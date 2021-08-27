@@ -9,6 +9,36 @@ import Axios from "axios";
 import {useSnackbar} from "notistack";
 import {useRefresh} from "../../../hooks/refresh";
 
+const toFormData = (payload) => {
+    const data = new FormData();
+    for (let k of Object.keys(payload))
+    {
+        data.append(k, payload[k]);
+    }
+    return data;
+}
+
+export const useClient = ({url, state, callback, isFormData= false}) => {
+    const {enqueueSnackbar} = useSnackbar()
+    return {
+        request: async (person, helpers) => {
+            try {
+                debugger
+                const body = isFormData ? toFormData(person) : person;
+                const result = await Axios.post(url, body)
+                enqueueSnackbar("Request Succeeded", {variant: "success"});
+                state.refresh()
+
+                callback()
+            } catch (e) {
+                enqueueSnackbar(e.message, {variant: "error"});
+            } finally {
+                helpers.setSubmitting(false)
+            };
+        }
+    }
+}
+
 export function EditDialog({id, show, onHide}) {
     // People UI Context
     const UIContext = useUIContext();
@@ -33,48 +63,16 @@ export function EditDialog({id, show, onHide}) {
         dispatch(actions.fetchPerson(id));
     }, [id, dispatch]);
 
-    const {enqueueSnackbar} = useSnackbar()
+
     const RefreshState = useRefresh("people", actions, useUIContext)
-    const saveItem2 = async (person, helpers) => {
-        try {
+    const {request} = useClient(
+        {
+            url:"/api/admin/person",
+            state: RefreshState,
+            callback: onHide,
+            isFormData: true,
+        });
 
-            if (!id) {
-                // server request for creating aggregator
-                const {id, ...raggregator} = person
-                raggregator.menuIds = []
-                const result = await Axios.post("api/Person", raggregator)
-                enqueueSnackbar("Updated Successfully", {variant: "success"});
-            } else {
-                // server request for updating aggregator
-                let {
-                    personname,
-                    password,
-                    firstName,
-                    lastName,
-                    status,
-                    roleId,
-                    notes
-                } = person;
-                const result = await Axios.put("api/Person", {
-                    personname,
-                    password,
-                    firstName,
-                    lastName,
-                    status,
-                    roleId,
-                    notes
-                })
-                enqueueSnackbar("Updated Successfully", {variant: "success"});
-
-            }
-            RefreshState.refresh()
-            helpers.setSubmitting(false)
-            onHide()
-        } catch (e) {
-            helpers.setSubmitting(false)
-            enqueueSnackbar("Request Failed", {variant: "error"});
-        }
-    };
     return (
         <Modal
             size="lg"
@@ -84,7 +82,7 @@ export function EditDialog({id, show, onHide}) {
         >
             <EditDialogHeader id={id}/>
             <EditForm
-                saveItem={saveItem2}
+                saveItem={request}
                 actionsLoading={actionsLoading}
                 item={personForEdit}
                 onHide={onHide}

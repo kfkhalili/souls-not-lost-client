@@ -46,7 +46,7 @@ export function ChangeUserRole({
             helpers.setSubmitting(false)
         }
     };
-    debugger
+
     if (!userForEdit)
         return (<div>
             <Spinner/>

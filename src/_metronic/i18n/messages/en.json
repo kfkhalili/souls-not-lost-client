@@ -146,6 +146,7 @@
   "Nationality": "Nationality",
   "Occupation": "Occupation",
   "CauseOfDeath": "CauseOfDeath",
-  "Url": "CauseOfDeath",
-  "Picture": "CauseOfDeath"
+  "PlaceOfDeath": "Place Of Death",
+  "Url": "Url",
+  "Picture": "Picture"
 }

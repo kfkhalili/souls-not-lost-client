@@ -2,6 +2,7 @@ import React from 'react';
 import {v4 as uuid} from 'uuid';
 import {I18EN} from "../../../../../../_metronic/i18n/Keys";
 import {fieldTags} from "../../../../../../_metronic/_partials/controls/Form/InputTypes";
+import {toIds} from "../../../helpers/maplist";
 
 const useFields = (isAdd) => {
     const fields = [
@@ -33,6 +34,7 @@ const useFields = (isAdd) => {
             name: 'nationality',
             type: 'select',
             getURL: "api/general/nationalities",
+            mapItems: toIds,
             initialValue: '',
         },
         {
@@ -41,19 +43,28 @@ const useFields = (isAdd) => {
             tag: fieldTags.SelectInput,
             name: 'occupation',
             type: 'select',
-            items: [{
-                id: 1,
-                name: "Israel",
-                nameAr: "اسرائيل"
-            }],
+            getURL: "api/general/nationalities",
+            mapItems: toIds,
             initialValue: '',
         },
         {
             id: uuid(),
             label: I18EN.CauseOfDeath,
-            tag: fieldTags.TextArea,
+            tag: fieldTags.SelectInput,
             name: 'causeOfDeath',
-            type: 'text',
+            type: 'select',
+            getURL: "api/general/causeofdeath",
+            mapItems: toIds,
+            initialValue: '',
+        },
+        {
+            id: uuid(),
+            label: I18EN.PlaceOfDeath,
+            tag: fieldTags.SelectInput,
+            name: 'deathPlace',
+            type: 'select',
+            getURL: "api/general/placeofdeath",
+            mapItems: toIds,
             initialValue: '',
         },
         {

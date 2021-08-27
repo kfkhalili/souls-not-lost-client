@@ -50,7 +50,7 @@ export function MixedWidget14({className, summary,fetchSummery, listLoading, ...
         }
 
         const height = parseInt(KTUtil.css(element, 'height'));
-        debugger
+
         const options = getChartOptions(layoutProps, height, [
             Number(summary.totalTransactionsPercentage) || 0,
             Number(summary.totalCancelledTransactionsPercentage) || 0,

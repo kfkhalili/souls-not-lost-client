@@ -20,7 +20,7 @@ export default function setupAxios(axios, store) {
 
             var data= store.getState();
             config.baseURL = "http://localhost:5001"
-            debugger
+
             const {
                 auth: { token },
                 i18nConfig
@@ -69,6 +69,10 @@ export default function setupAxios(axios, store) {
                     // logoutClick()
                     window.location = "/logout";
                 }
+            if(error.response?.data?.message > " "){
+                error.message = error.response?.data?.message
+            }
+
             return Promise.reject(error);
         }
     );

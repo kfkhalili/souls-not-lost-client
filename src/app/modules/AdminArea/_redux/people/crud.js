@@ -26,7 +26,7 @@ export function getAllPeople() {
 }
 
 export function getPersonById(personId) {
-    debugger
+
     return axios.get(`${URL}/person/${personId}`);
 }
 

@@ -26,7 +26,7 @@ export function ChangeRoleDialog({ id, show, onHide }) {
   );
 
   useEffect(() => {
-    debugger
+
     // server call for getting User by id
     dispatch(actions.fetchUser(id));
   }, [id, dispatch]);

@@ -8,6 +8,7 @@ import {Typeahead} from "react-bootstrap-typeahead";
 import *  as _ from "loadsh"
 import {translate} from "../../../_helpers/translate";
 import {toAbsoluteUrl} from "../../../_helpers";
+import {isNumber} from "loadsh";
 
 export function SingleTypeheadSelect({
                                          label,
@@ -15,6 +16,7 @@ export function SingleTypeheadSelect({
                                          customFeedbackLabel,
                                          children,
                                          getURL,
+                                         mapItems = (list) => list,
                                          ...props
                                      }) {
     const intl = useIntl();
@@ -49,7 +51,8 @@ export function SingleTypeheadSelect({
                     } else {
                         result = await Axios.get(`${API}${getURL}`);
                     }
-                    setData(result.data.data);
+                    debugger
+                    setData(mapItems(result.data.data));
                 } catch (e) {
 
                 }
@@ -77,7 +80,12 @@ export function SingleTypeheadSelect({
         if (getURL > " ") {
             if (_.isArray(data))
                 if (selected > " ") {
-                    let res = data.find((i) => i.id === +selected)
+                    let res;
+                    if(+selected){
+                        res = data.find((i) => i.id === +selected)
+                    }else{
+                        res = data.find((i) => i.id === selected)
+                    }
                     if (res)
                         return [res]
                 } else {

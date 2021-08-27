@@ -107,7 +107,7 @@ const FormController = (props) => {
     }
 
     if (isTimePicker(tag)) {
-        debugger;
+        ;
         return (
             <Field
                 name={name}

@@ -53,8 +53,8 @@ export function EditForm({
             .required("required"),
         birth: Yup.string().required(),
         death: Yup.string().required(),
-        nationality: Yup.number().required(),
-        occupation: Yup.number().required(),
+        nationality: Yup.string().required(),
+        occupation: Yup.string().required(),
         causeOfDeath: Yup.string().required(),
         picture: Yup.mixed().required()
 

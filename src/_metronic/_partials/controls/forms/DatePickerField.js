@@ -30,7 +30,7 @@ export function DatePickerField({  field, // { name, value, onChange, onBlur }
         {...props}
         selected={field.value }
         onChange={val => {
-          debugger
+
           setFieldValue(field.name, val);
         }}
       />

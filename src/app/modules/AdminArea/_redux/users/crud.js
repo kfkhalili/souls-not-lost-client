@@ -26,7 +26,7 @@ export function getAllUsers() {
 }
 
 export function getUserById(userId) {
-    debugger
+
     return axios.get(`${URL}/user/${userId}`);
 }
 
