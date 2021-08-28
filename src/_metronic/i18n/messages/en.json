@@ -145,8 +145,12 @@
   "DeathDate": "Death Date",
   "Nationality": "Nationality",
   "Occupation": "Occupation",
-  "CauseOfDeath": "CauseOfDeath",
+  "CauseOfDeath": "Cause Of Death",
   "PlaceOfDeath": "Place Of Death",
+  "PlaceOfBirth": "Place Of Birth",
   "Url": "Url",
-  "Picture": "Picture"
+  "Picture": "Picture",
+  "Date.Of.Birth": "Date of Birth",
+  "Date.Of.Death": "Date of Death",
+  "end": "end"
 }

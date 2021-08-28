@@ -19,7 +19,7 @@ export default function setupAxios(axios, store) {
         (config) => {
 
             var data= store.getState();
-            config.baseURL = "https://api.soulsnotlost.com";
+            config.baseURL = "https://api.soulsnotlost.com"
 
             const {
                 auth: { token },
@@ -69,6 +69,7 @@ export default function setupAxios(axios, store) {
                     // logoutClick()
                     window.location = "/logout";
                 }
+            debugger
             if(error.response?.data?.message > " "){
                 error.message = error.response?.data?.message
             }

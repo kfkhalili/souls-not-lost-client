@@ -23,6 +23,22 @@ import {useIntl} from "react-intl";
 import {I18EN} from "../../../../../../_metronic/i18n/Keys";
 import moment from "moment"
 
+/*
+* name: { type : String, required: true, trim: true},
+  birth: { type : Date, required: true, trim: true},
+  birthplace: { type: String },
+  death: { type : Date, min: this.birth, required: true, trim: true},
+  deathPlace: { type: String, required: true },
+  nationality:  { type: mongoose.Schema.Types.ObjectId, ref: 'Nationality' },
+  occupation: { type: mongoose.Schema.Types.ObjectId, ref: 'Nationality' },
+  causeOfDeath: { type: mongoose.Schema.Types.ObjectId, ref: 'CauseOfDeath' },
+  url: { type : String, required: true, trim: true},
+  image: [{ type : Buffer, required: true }],
+  createdBy:{
+    type: schema.Types.ObjectId,
+    ref: 'user'
+  },
+* */
 export function Table() {
     // People UI Context
     const UIContext = useUIContext();
@@ -58,34 +74,104 @@ export function Table() {
     const intl = useIntl()
     const columns = [
         {
-            dataField: "personname",
+            dataField: "name",
             text: intl.formatMessage({
                 id: I18EN["SOLES.Person"]
             }),
             sort: true,
             sortCaret: sortCaret,
+            formatter: (model, row) => {
+                return <a href={row.url}>
+                    <div>
+                        {row.image && <img className="img-thumbnail" src={row.image} href={row.name}/>}
+                        <b className="text-dark">{model}</b>
+                    </div>
+                </a>
+            },
             headerSortingClasses,
         },
         {
-            dataField: "firstName_lastName",
-            text: <>
-                {intl.formatMessage({
-                    id: I18EN["SOLES.First.Name"]
-                })}
-                <br/>
-                {intl.formatMessage({
-                    id: I18EN["SOLES.Last.Name"]
-                })}
-            </>
-            ,
+            dataField: "birth",
+            text: intl.formatMessage({
+                id: I18EN["Date.Of.Birth"]
+            }),
             sort: true,
-            formatter: (cell, row) => {
-                return <>
-                    {row?.firstName} <br/>
-                    {row?.lastName}
-                </>
-            },
             sortCaret: sortCaret,
+            formatter: (date) => {
+                return moment(date).format('yyyy-MM-DD HH:mm')
+            },
+            headerSortingClasses,
+        },
+        {
+            dataField: "birthplace",
+            text: intl.formatMessage({
+                id: I18EN["PlaceOfBirth"]
+            }),
+            sort: true,
+            sortCaret: sortCaret,
+            formatter: (model) => {
+                return model?.name
+            },
+            headerSortingClasses,
+        },
+        {
+            dataField: "death",
+            text: intl.formatMessage({
+                id: I18EN["Date.Of.Death"]
+            }),
+            sort: true,
+            sortCaret: sortCaret,
+            formatter: (date) => {
+                return moment(date).format('yyyy-MM-DD HH:mm')
+            },
+            headerSortingClasses,
+        },
+        {
+            dataField: "deathPlace",
+            text: intl.formatMessage({
+                id: I18EN["PlaceOfBirth"]
+            }),
+            sort: true,
+            sortCaret: sortCaret,
+            formatter: (model) => {
+                return model?.name
+            },
+            headerSortingClasses,
+        },
+        {
+            dataField: "nationality",
+            text: intl.formatMessage({
+                id: I18EN["Nationality"]
+            }),
+            sort: true,
+            sortCaret: sortCaret,
+            formatter: (model) => {
+                return model?.name
+            },
+            headerSortingClasses,
+        },
+        {
+            dataField: "occupation",
+            text: intl.formatMessage({
+                id: I18EN["Occupation"]
+            }),
+            sort: true,
+            sortCaret: sortCaret,
+            formatter: (model) => {
+                return model?.name
+            },
+            headerSortingClasses,
+        },
+        {
+            dataField: "causeOfDeath",
+            text: intl.formatMessage({
+                id: I18EN["CauseOfDeath"]
+            }),
+            sort: true,
+            sortCaret: sortCaret,
+            formatter: (model) => {
+                return model?.name
+            },
             headerSortingClasses,
         },
         {
@@ -95,66 +181,11 @@ export function Table() {
             }),
             sort: true,
             sortCaret: sortCaret,
-            headerSortingClasses,
-        },
-        {
-            dataField: "createdDate",
-            text: intl.formatMessage({
-                id: I18EN["SOLES.Created.Date"]
-            }),
-            sort: true,
-            sortCaret: sortCaret,
-            formatter: (createdAt) => {
-             return moment(createdAt).format('yyyy-MM-DD HH:mm')
+            formatter: (model) => {
+                return model?.name
             },
             headerSortingClasses,
         },
-        {
-            dataField: "updatedBy",
-            text: intl.formatMessage({
-                id: I18EN["SOLES.Created.By"]
-            }),
-            sort: true,
-            sortCaret: sortCaret,
-            headerSortingClasses,
-        },
-        {
-            dataField: "updatedDate",
-            text: intl.formatMessage({
-                id: I18EN["SOLES.Created.Date"]
-            }),
-            sort: true,
-            formatter: (createdAt) => {
-                return moment(createdAt).format('yyyy-MM-DD HH:mm')
-            },
-            sortCaret: sortCaret,
-            headerSortingClasses,
-        },
-        {
-            dataField: "notes",
-            text: intl.formatMessage({
-                id: I18EN["NOTES"]
-            }),
-            sort: true,
-            sortCaret: sortCaret,
-            headerSortingClasses,
-        },
-        // {
-        //     dataField: "status",
-        //     text: intl.formatMessage({id: I18EN["SOLES.Status"]}),
-        //     sort: true,
-        //     formatter: AColumnFormatter,
-        //     sortCaret: sortCaret,
-        //     headerSortingClasses,
-        // },
-        // {
-        //     dataField: "roleId",
-        //     text: intl.formatMessage({id: I18EN["SOLES.RoleId"]}),
-        //     sort: true,
-        //     formatter: RoleColumnFormatter,
-        //     sortCaret: sortCaret,
-        //     headerSortingClasses,
-        // },
         {
             dataField: "action",
             text: intl.formatMessage({id: I18EN.Actions}),
