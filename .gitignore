@@ -3,14 +3,18 @@
 # dependencies
 /~
 /node_modules
+**/node_modules
 /.pnp
+**/.pnp
 .pnp.js
 
 # testing
 /coverage
+**/coverage
 
 # redactor
 /.idea
+**/.idea
 
 # assets
 
@@ -19,7 +23,7 @@
 
 # production
 /_site
-/build
+**/build
 
 # misc
 .DS_Store
