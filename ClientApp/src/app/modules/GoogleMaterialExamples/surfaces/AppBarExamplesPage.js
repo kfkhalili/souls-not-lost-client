@@ -300,7 +300,7 @@ export default function AppBarExamplesPage(props) {
     <>
       <Notice icon="flaticon-warning font-primary">
         <span>
-          The App Bar displays information and actions relating to the current
+          The ImagesCatalog Bar displays information and actions relating to the current
           screen.
         </span>{" "}
         <span>
@@ -320,7 +320,7 @@ export default function AppBarExamplesPage(props) {
         <div className="col-md-6">
           <KTCodeExample
             jsCode={jsCode1}
-            beforeCodeTitle="App Bar with buttons"
+            beforeCodeTitle="ImagesCatalog Bar with buttons"
             codeBlockHeight="400px"
           >
             <div className={classes1.root}>
@@ -345,7 +345,7 @@ export default function AppBarExamplesPage(props) {
 
           <KTCodeExample
             jsCode={jsCode3}
-            beforeCodeTitle="App Bar with a primary search field"
+            beforeCodeTitle="ImagesCatalog Bar with a primary search field"
             codeBlockHeight="400px"
           >
             <span>A primary searchbar.</span>
@@ -423,7 +423,7 @@ export default function AppBarExamplesPage(props) {
 
           <KTCodeExample
             jsCode={jsCode5}
-            beforeCodeTitle="App Bar with search field"
+            beforeCodeTitle="ImagesCatalog Bar with search field"
             codeBlockHeight="400px"
           >
             <span>A side searchbar.</span>
@@ -463,7 +463,7 @@ export default function AppBarExamplesPage(props) {
         <div className="col-md-6">
           <KTCodeExample
             jsCode={jsCode2}
-            beforeCodeTitle="Simple App Bar"
+            beforeCodeTitle="Simple ImagesCatalog Bar"
             codeBlockHeight="400px"
           >
             <div className={classes2.root}>
@@ -479,7 +479,7 @@ export default function AppBarExamplesPage(props) {
 
           <KTCodeExample
             jsCode={jsCode4}
-            beforeCodeTitle="App Bar with menu"
+            beforeCodeTitle="ImagesCatalog Bar with menu"
             codeBlockHeight="400px"
           >
             <div className={classes4.root}>

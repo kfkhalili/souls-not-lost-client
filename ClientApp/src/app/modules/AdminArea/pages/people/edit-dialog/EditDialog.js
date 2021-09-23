@@ -23,7 +23,6 @@ export const useClient = ({url, state, callback, isFormData= false}) => {
     return {
         request: async (person, helpers) => {
             try {
-                debugger
                 const body = isFormData ? toFormData(person) : person;
                 const result = await Axios.post(url, body)
                 enqueueSnackbar("Request Succeeded", {variant: "success"});

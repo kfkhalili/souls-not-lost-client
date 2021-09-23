@@ -51,7 +51,6 @@ export function SingleTypeheadSelect({
                     } else {
                         result = await Axios.get(`${API}${getURL}`);
                     }
-                    debugger
                     setData(mapItems(result.data.data));
                 } catch (e) {
 

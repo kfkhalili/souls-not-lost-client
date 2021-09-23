@@ -16,7 +16,7 @@ export function ActionsColumnFormatter(
             <a
                 title="Edit person"
                 className="btn btn-icon btn-light btn-hover-primary btn-sm mx-3"
-                onClick={() => openEditPersonDialog(row.personname)}
+                onClick={() => openEditPersonDialog(row._id)}
             >
         <span className="svg-icon svg-icon-md svg-icon-warning">
           <SVG

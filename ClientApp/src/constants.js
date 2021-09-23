@@ -6,4 +6,4 @@ export const IS_STAGING = env === STAGING
 
 export const enableFCM = false
 
-export const API =  env === 'PROD' ?  'https://webapi.ocost.co/api' :  "http://localhost:5001/";
+export const API =  env === 'PROD' ?  'https://api.solesnotlost.com/api' :  "https://localhost:5001/";
