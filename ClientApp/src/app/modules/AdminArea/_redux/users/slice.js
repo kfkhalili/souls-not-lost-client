@@ -68,7 +68,6 @@ export const slice = createSlice({
     userDeleted: (state, action) => {
       state.error = null;
       state.actionsLoading = false;
-      state.entities = state.entities.filter(el => el.id !== action.payload.id);
     },// tokenGenerated
     tokenGenerated: (state, action) => {
       state.error = null;

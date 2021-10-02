@@ -9,7 +9,7 @@ export function ActionsColumnFormatter(
     cellContent,
     row,
     rowIndex,
-    {openEditPersonDialog, openChangeRole}
+    {openEditPersonDialog, openDeletePersonDialog}
 ) {
     return (
         <>
@@ -28,10 +28,10 @@ export function ActionsColumnFormatter(
             <a
                 title={"Change Role"}
                 className="btn btn-icon btn-light btn-hover-primary btn-sm mx-3"
-                onClick={() => openChangeRole(row._id)}
+                onClick={() => openDeletePersonDialog(row._id)}
             >
         <span className="svg-icon svg-icon-md svg-icon-warning">
-          <SVG src={toAbsoluteUrl("/media/svg/icons/Communication/Delete-person.svg")}/>
+          <SVG src={toAbsoluteUrl("/media/svg/icons/Communication/Delete-user.svg")}/>
         </span>
             </a>
         </>

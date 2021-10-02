@@ -1,50 +1,41 @@
 import React, { useEffect, useMemo } from "react";
-import { Modal } from "react-bootstrap";
+import {Modal, Spinner} from "react-bootstrap";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import {ModalProgressBar} from "../../../../../../_metronic/_partials/controls";
 import * as actions from "../../../_redux/people/actions";
 import {useUIContext} from "../UIContext";
-
+import {useRefresh} from "../../../hooks/refresh";
+import {useSnackbar} from "notistack";
+import Axios from "axios";
+export const useDeleteClient = ({url, state, callback, isFormData= false, type="post", id}) => {
+  const {enqueueSnackbar} = useSnackbar()
+  return {
+    request: async () => {
+      try {
+        const result = await Axios[type](`${url}/${id}`)
+        enqueueSnackbar("Request Succeeded", {variant: "success"});
+        state.refresh()
+        callback()
+      } catch (e) {
+        enqueueSnackbar(e.message, {variant: "error"});
+      }
+    }
+  }
+}
 export function DeleteDialog({ id, show, onHide }) {
-  // People UI Context
-  const UIContext = useUIContext();
-  const UIProps = useMemo(() => {
-    return {
-      setIds: UIContext.setIds,
-      queryParams: UIContext.queryParams
-    };
-  }, [UIContext]);
-
-  // People Redux state
-  const dispatch = useDispatch();
   const { isLoading } = useSelector(
     (state) => ({ isLoading: state.people.actionsLoading }),
     shallowEqual
   );
-
-  // if !id we should close modal
-  useEffect(() => {
-    if (!id) {
-      onHide();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
-
-  // looking for loading/dispatch
-  useEffect(() => {}, [isLoading, dispatch]);
-
-  const deletePerson = () => {
-    // server request for deleting person by id
-    dispatch(actions.deletePerson(id)).then(() => {
-      // refresh list after deletion
-      dispatch(actions.fetchItems(UIProps.queryParams));
-      // clear selections list
-      UIProps.setIds([]);
-      // closing delete modal
-      onHide();
-    });
-  };
-
+  const RefreshState = useRefresh("people", actions, useUIContext)
+  const {request} = useDeleteClient(
+      {
+        url:"/api/admin/person",
+        state: RefreshState,
+        callback: onHide,
+        type:"delete",
+        id
+      });
   return (
     <Modal
       show={show}
@@ -77,11 +68,12 @@ export function DeleteDialog({ id, show, onHide }) {
           <> </>
           <button
             type="button"
-            onClick={deletePerson}
+            onClick={request}
             className="btn btn-primary btn-elevate"
           >
             Delete
           </button>
+          {isLoading && <Spinner/>}
         </div>
       </Modal.Footer>
     </Modal>

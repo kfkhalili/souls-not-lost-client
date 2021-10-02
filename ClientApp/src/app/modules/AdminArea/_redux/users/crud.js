@@ -51,7 +51,7 @@ export function updateStatusForUsers(ids, status) {
 
 // DELETE => delete the user from the server
 export function deleteUser(userId) {
-    return axios.delete(`${URL}/${userId}`);
+    return axios.delete(`${URL}/person/${userId}`);
 }
 
 // DELETE Users by ids

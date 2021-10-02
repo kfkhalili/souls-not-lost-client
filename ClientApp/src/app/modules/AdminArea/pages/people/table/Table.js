@@ -198,7 +198,6 @@ export function Table() {
             formatExtraData: {
                 openEditPersonDialog: UIProps.openEditPersonDialog,
                 openDeletePersonDialog: UIProps.openDeletePersonDialog,
-                openChangeRole: UIProps.openChangeRole,
             },
             classes: "text-right pr-0",
             headerClasses: "text-right pr-3",
