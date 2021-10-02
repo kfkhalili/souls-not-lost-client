@@ -8,7 +8,8 @@ import {UpdateStateDialog} from "./update-status-dialog/UpdateStateDialog";
 import {UIProvider} from "./UIContext";
 import {Card} from "./Card";
 import {ValidateTokenDialog} from "./validate-token-dialog/ValidateTokenDialog";
-import {ChangeRoleDialog} from "./generate-token-dialog/ChangeRoleDialog";
+import {ChangeRoleDialog} from "./change-role-dialog/ChangeRoleDialog";
+import {CanUploadDialog} from "./can-upload-dialog/CanUploadDialog";
 import {ContentRoute} from "../../../../../_metronic/layout";
 
 export function Page() {
@@ -28,6 +29,9 @@ export function Page() {
         },
         openChangeRole: (id)=>{
             history.push(`/users/changerole/${id}`);
+        },
+        openCanUpload: (id)=>{
+            history.push(`/users/canupload/${id}`);
         }
     }
 
@@ -91,6 +95,17 @@ export function Page() {
                     <Route path="/users/:id/makeadmin">
                         {({history, match}) => (
                             <DeleteDialog
+                                show={match != null}
+                                id={match && match.params.id}
+                                onHide={() => {
+                                    history.push("/users");
+                                }}
+                            />
+                        )}
+                    </Route>
+                    <Route path="/users/canupload/:id">
+                        {({history, match}) => (
+                            <CanUploadDialog
                                 show={match != null}
                                 id={match && match.params.id}
                                 onHide={() => {

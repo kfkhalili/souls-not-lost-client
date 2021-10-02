@@ -1,5 +1,6 @@
 import * as requestFromServer from "./crud";
 import {slice, callTypes} from "./slice";
+import {changeUserCanUpload} from "./crud";
 
 const {actions} = slice;
 
@@ -72,6 +73,19 @@ export const changeUserRole = (values) => dispatch => {
       error.clientMessage = "Can't create user";
       dispatch(actions.catchError({ error, callType: callTypes.action }));
     });
+};
+
+export const canUploadChange = (values) => dispatch => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+      .changeUserCanUpload(values)
+      .then(response => {
+        dispatch(actions.tokenGenerated({...values,token:response.data}));
+      })
+      .catch(error => {
+        error.clientMessage = "Can't create user";
+        dispatch(actions.catchError({ error, callType: callTypes.action }));
+      });
 };
 
 export const updateUser = user => dispatch => {

@@ -54,7 +54,8 @@ export function UIProvider({UIEvents, children}) {
     openDeleteUsersDialog: UIEvents.openDeleteUsersDialog,
     openFetchUsersDialog: UIEvents.openFetchUsersDialog,
     openUpdateUsersStatusDialog: UIEvents.openUpdateUsersStatusDialog,
-    openChangeRole: UIEvents.openChangeRole
+    openChangeRole: UIEvents.openChangeRole,
+    openCanUpload: UIEvents.openCanUpload,
   };
 
   return <UIContext.Provider value={value}>{children}</UIContext.Provider>;

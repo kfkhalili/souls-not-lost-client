@@ -9,7 +9,7 @@ export function ActionsColumnFormatter(
     cellContent,
     row,
     rowIndex,
-    {openEditUserDialog, openChangeRole}
+    {openEditUserDialog, openChangeRole, openCanUpload}
 ) {
     return (
         <>
@@ -32,6 +32,16 @@ export function ActionsColumnFormatter(
             >
         <span className="svg-icon svg-icon-md svg-icon-warning">
           <SVG src={toAbsoluteUrl("/media/svg/icons/Communication/Shield-user.svg")}/>
+        </span>
+            </a>
+
+            <a
+                title={"Can Upload"}
+                className="btn btn-icon btn-light btn-hover-primary btn-sm mx-3"
+                onClick={() => openCanUpload(row._id)}
+            >
+        <span className="svg-icon svg-icon-md svg-icon-warning">
+          <SVG src={toAbsoluteUrl("/media/svg/icons/Files/Upload.svg")}/>
         </span>
             </a>
         </>

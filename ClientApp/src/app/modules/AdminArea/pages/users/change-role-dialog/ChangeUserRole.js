@@ -14,6 +14,7 @@ import {SaveButton} from "../../../../../../_metronic/_TransaltedButtons";
 import {useSnackbar} from "notistack";
 import {useRefresh} from "../../../hooks/refresh";
 import {useUIContext} from "../../users/UIContext";
+import axios from "axios";
 
 // Validation schema
 const changeUserTypeValidation = Yup.object().shape({
@@ -43,7 +44,7 @@ export function ChangeUserRole({
             if (userForEdit?._id) {
                 // server request for creating user
                 try {
-                    const res = await dispatch(actions.changeUserRole(values));
+                    const res = await axios.get("/api/admin/changerole", {params: values});
                     enqueueSnackbar("Request Succeeded", {variant: "success"});
                     RefreshState.refresh()
                     onHide()

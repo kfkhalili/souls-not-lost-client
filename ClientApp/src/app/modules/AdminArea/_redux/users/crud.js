@@ -19,6 +19,11 @@ export function changeUserRole(params) {
     return axios.get("/api/admin/changerole", {params});
 }
 
+// can upload
+export function changeUserCanUpload(params) {
+    return axios.get("/api/admin/canupload", {params});
+}
+
 
 // READ
 export function getAllUsers() {

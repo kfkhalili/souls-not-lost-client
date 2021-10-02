@@ -3,13 +3,9 @@
 // STORYBOOK: https://react-bootstrap-table.github.io/react-bootstrap-table2/storybook/index.html
 import React, {useEffect, useMemo} from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory, {
-    PaginationProvider,
-} from "react-bootstrap-table2-paginator";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import * as actions from "../../../_redux/users/actions";
 import {
-    getSelectRow,
     getHandlerTableChange,
     NoRecordsFoundMessage,
     PleaseWaitMessage,
@@ -35,6 +31,7 @@ export function Table() {
             openEditUserDialog: UIContext.openEditUserDialog,
             openDeleteUserDialog: UIContext.openDeleteUserDialog,
             openChangeRole: UIContext.openChangeRole,
+            openCanUpload: UIContext.openCanUpload,
         };
     }, [UIContext]);
 
@@ -114,6 +111,7 @@ export function Table() {
                 openEditUserDialog: UIProps.openEditUserDialog,
                 openDeleteUserDialog: UIProps.openDeleteUserDialog,
                 openChangeRole: UIProps.openChangeRole,
+                openCanUpload: UIProps.openCanUpload,
             },
             classes: "text-right pr-0",
             headerClasses: "text-right pr-3",
@@ -132,13 +130,6 @@ export function Table() {
     };
     return (
         <>
-            {/*<PaginationProvider pagination={paginationFactory(paginationOptions)}>*/}
-            {/*    {({paginationProps, paginationTableProps}) => {*/}
-            {/*        return (*/}
-            {/*            // <Pagination*/}
-            {/*            //     isLoading={listLoading}*/}
-            {/*            //     paginationProps={paginationProps}*/}
-            {/*            // >*/}
             <BootstrapTable
                 wrapperClasses="table-responsive"
                 bordered={false}
@@ -158,10 +149,6 @@ export function Table() {
                 <PleaseWaitMessage entities={entities}/>
                 <NoRecordsFoundMessage entities={entities}/>
             </BootstrapTable>
-            {/*//             </Pagination>*/}
-            {/*//         );*/}
-            {/*//     }}*/}
-            {/*// </PaginationProvider>*/}
         </>
     );
 }
