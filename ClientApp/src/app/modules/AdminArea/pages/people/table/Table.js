@@ -83,8 +83,8 @@ export function Table() {
             formatter: (model, row) => {
                 return <a href={row.url}>
                     <div>
-                        {row.image && <img className="img-thumbnail" src={row.image} href={row.name}/>}
-                        <b className="text-dark">{model}</b>
+                        {row.image && <img className="img-thumbnail w-30px"  src={row.image} href={row.name}/>}
+                        <b className="text-dark mx-2">{model}</b>
                     </div>
                 </a>
             },
@@ -182,7 +182,12 @@ export function Table() {
             sort: true,
             sortCaret: sortCaret,
             formatter: (model) => {
-                return model?.name
+                return (<div>
+                    <div>
+                        <b>{model?.username}</b>
+                    </div>
+                    <small>{model?.email}</small>
+                </div>);
             },
             headerSortingClasses,
         },

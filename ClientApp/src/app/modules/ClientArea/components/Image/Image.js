@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     figure: {position:'relative'},
   }));
 
-const Image = ({ image }) => {
+const Image = ({ person }) => {
     const classes = useStyles();
 
     const [hover, setHover] = useState(false);
@@ -46,28 +46,28 @@ const Image = ({ image }) => {
     const openModal = () => {
         setOpenModal(true);
     };
-
+debugger;
     return (
     <>
         <figure className={classes.figure} onMouseEnter={onHover} onMouseLeave={onLeave} onClick={openModal}>
             
             { hover ?
                 <>
-                <img className={classes.imgHover} src={image.url} alt={image.name}/>
+                {person.image?.length > 0 ? <img className={classes.imgHover} src={person.image[0]} alt={person.name}/> : <img className={classes.imgHover} src={"/images/placeholder.png"} alt={person.name}/> }
                 <div className={classes.imgDescriptionLayerHover}>
-                <h2 className={classes.imgDescriptionHover}>{image.name}</h2>
+                <h2 className={classes.imgDescriptionHover}>{person.name}</h2>
                 </div>
                 </>
                 :
                 <>
-                <img src={image.url} alt={image.name}/>
+                {person.image?.length > 0 ? <img className={classes.imgHover} src={person.image[0]} alt={person.name}/> : <img className={classes.imgHover} src={"/images/placeholder.png"} alt={person.name}/> }
                 <div className={classes.imgDescriptionLayerNoHover}>
-                <h2 className={classes.imgDescriptionNoHover}>{image.name}</h2>
+                <h2 className={classes.imgDescriptionNoHover}>{person.name}</h2>
                 </div>
                 </>
             }
         </figure>
-        { isModalOpen ? <ImageModal image={image} open={isModalOpen} setOpen={setOpenModal}/> : null }
+        { isModalOpen ? <ImageModal image={person} open={isModalOpen} setOpen={setOpenModal}/> : null }
     </>
   )
 }
