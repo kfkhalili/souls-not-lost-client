@@ -11,6 +11,9 @@ import useFields from "./fields";
 import * as actions from "../../../_redux/users/actions";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import {SaveButton} from "../../../../../../_metronic/_TransaltedButtons";
+import {useSnackbar} from "notistack";
+import {useRefresh} from "../../../hooks/refresh";
+import {useUIContext} from "../../users/UIContext";
 
 // Validation schema
 const changeUserTypeValidation = Yup.object().shape({
@@ -19,7 +22,6 @@ const changeUserTypeValidation = Yup.object().shape({
 });
 
 export function ChangeUserRole({
-                                      item,
                                       onHide,
                                   }) {
     const dispatch = useDispatch();
@@ -31,6 +33,8 @@ export function ChangeUserRole({
         shallowEqual
     );
     const {fields, initialValues} = useFields(userForEdit?.userType, userForEdit?._id);
+    const {enqueueSnackbar} = useSnackbar()
+    const RefreshState = useRefresh("people", actions, useUIContext)
 
     // server request for saving user
     const updateRole = async (values, helpers) => {
@@ -38,7 +42,14 @@ export function ChangeUserRole({
 
             if (userForEdit?._id) {
                 // server request for creating user
-                const res = await dispatch(actions.changeUserRole(values));
+                try {
+                    const res = await dispatch(actions.changeUserRole(values));
+                    enqueueSnackbar("Request Succeeded", {variant: "success"});
+                    RefreshState.refresh()
+                    onHide()
+                } catch (e) {
+                    enqueueSnackbar(e.message, {variant: "error"});
+                }
             }
             helpers.setSubmitting(false)
         } catch (e) {

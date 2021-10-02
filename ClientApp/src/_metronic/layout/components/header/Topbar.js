@@ -4,6 +4,7 @@ import { useHtmlClassService } from "../../_core/MetronicLayout";
  import { LanguageSelectorDropdown } from "../extras/dropdowns/LanguageSelectorDropdown";
 import { QuickUserToggler } from "../extras/QuiclUserToggler";
 import {shallowEqual, useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 
 export function Topbar() {
   const uiService = useHtmlClassService();
@@ -36,7 +37,12 @@ export function Topbar() {
   }, [uiService]);
   return (
     <div className="topbar">
-      {user && <div className="d-flex w-30 align-items-center"> <div>Hi, {user.username}</div></div>}
+      {user ? <div className="d-flex w-30 align-items-center"> <div>Hi, {user.username}</div></div> : (<div className="d-flex w-30 align-items-center"><Link
+          className="btn btn-light-success btn-bold btn-sm"
+          to={"auth/login"}
+      >
+        Sign in
+      </Link></div>)}
       {layoutProps.viewLanguagesDisplay && <LanguageSelectorDropdown />}
       {layoutProps.viewUserDisplay && <QuickUserToggler />}
     </div>

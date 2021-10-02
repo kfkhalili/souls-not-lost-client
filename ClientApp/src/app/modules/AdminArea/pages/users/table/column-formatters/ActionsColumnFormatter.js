@@ -31,7 +31,7 @@ export function ActionsColumnFormatter(
                 onClick={() => openChangeRole(row._id)}
             >
         <span className="svg-icon svg-icon-md svg-icon-warning">
-          <SVG src={toAbsoluteUrl("/media/svg/icons/Communication/Delete-user.svg")}/>
+          <SVG src={toAbsoluteUrl("/media/svg/icons/Communication/Shield-user.svg")}/>
         </span>
             </a>
         </>
