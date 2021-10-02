@@ -46,7 +46,6 @@ const Image = ({ person }) => {
     const openModal = () => {
         setOpenModal(true);
     };
-debugger;
     return (
     <>
         <figure className={classes.figure} onMouseEnter={onHover} onMouseLeave={onLeave} onClick={openModal}>

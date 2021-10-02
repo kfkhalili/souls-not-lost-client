@@ -142,5 +142,6 @@
   "INACTIVE": "غير مفعل",
   "Standard": "عادي",
   "Administrator": "اداري",
-  "InvalidCredential": "يوجد خطأ في اسم المستخدم او كلمة المرور"
+  "InvalidCredential": "يوجد خطأ في اسم المستخدم او كلمة المرور",
+  "Hi": "مرحباً"
 }

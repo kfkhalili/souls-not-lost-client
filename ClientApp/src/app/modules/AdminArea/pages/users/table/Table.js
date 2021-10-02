@@ -67,35 +67,32 @@ export function Table() {
             headerSortingClasses,
         },
         {
-            dataField: "firstName_lastName",
-            text: <>
-                {intl.formatMessage({
-                    id: I18EN["SOLES.First.Name"]
-                })}
-                <br/>
-                {intl.formatMessage({
-                    id: I18EN["SOLES.Last.Name"]
-                })}
-            </>
-            ,
-            sort: true,
-            formatter: (cell, row) => {
-                return <>
-                    {row?.firstName} <br/>
-                    {row?.lastName}
-                </>
-            },
-            sortCaret: sortCaret,
-            headerSortingClasses,
-        },
-        {
-            dataField: "createdBy",
+            dataField: "email",
             text: intl.formatMessage({
-                id: I18EN["SOLES.Created.By"]
+                id: I18EN["AUTH.INPUT.EMAIL"]
             }),
             sort: true,
             sortCaret: sortCaret,
             headerSortingClasses,
+        },
+        {
+            dataField: "userType",
+            text: intl.formatMessage({
+                id: I18EN.UserType
+            }),
+            sort: true,
+            sortCaret: sortCaret,
+            headerSortingClasses,
+        },
+        {
+            dataField: "canUpload",
+            text: intl.formatMessage({
+                id: I18EN.CanUpload
+            }),
+            sort: true,
+            sortCaret: sortCaret,
+            headerSortingClasses,
+            formatter: (col) => col ? <span className="label label-lg label-light-success label-inline">Can upload</span> : <span className="label label-lg label-light-danger label-inline">Can't upload</span>
         },
         {
             dataField: "createdDate",
@@ -109,52 +106,6 @@ export function Table() {
             },
             headerSortingClasses,
         },
-        {
-            dataField: "updatedBy",
-            text: intl.formatMessage({
-                id: I18EN["SOLES.Created.By"]
-            }),
-            sort: true,
-            sortCaret: sortCaret,
-            headerSortingClasses,
-        },
-        {
-            dataField: "updatedDate",
-            text: intl.formatMessage({
-                id: I18EN["SOLES.Created.Date"]
-            }),
-            sort: true,
-            formatter: (createdAt) => {
-                return moment(createdAt).format('yyyy-MM-DD HH:mm')
-            },
-            sortCaret: sortCaret,
-            headerSortingClasses,
-        },
-        {
-            dataField: "notes",
-            text: intl.formatMessage({
-                id: I18EN["NOTES"]
-            }),
-            sort: true,
-            sortCaret: sortCaret,
-            headerSortingClasses,
-        },
-        // {
-        //     dataField: "status",
-        //     text: intl.formatMessage({id: I18EN["SOLES.Status"]}),
-        //     sort: true,
-        //     formatter: AColumnFormatter,
-        //     sortCaret: sortCaret,
-        //     headerSortingClasses,
-        // },
-        // {
-        //     dataField: "roleId",
-        //     text: intl.formatMessage({id: I18EN["SOLES.RoleId"]}),
-        //     sort: true,
-        //     formatter: RoleColumnFormatter,
-        //     sortCaret: sortCaret,
-        //     headerSortingClasses,
-        // },
         {
             dataField: "action",
             text: intl.formatMessage({id: I18EN.Actions}),

@@ -69,14 +69,6 @@ const useFields = (isAdd) => {
         },
         {
             id: uuid(),
-            label: I18EN.Url,
-            tag: fieldTags.TextInput,
-            name: 'url',
-            type: 'text',
-            initialValue: '',
-        },
-        {
-            id: uuid(),
             label: I18EN.Picture,
             tag: fieldTags.UploadInput,
             name: 'picture',

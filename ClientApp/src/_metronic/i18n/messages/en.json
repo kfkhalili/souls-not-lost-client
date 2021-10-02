@@ -153,5 +153,8 @@
   "Date.Of.Birth": "Date of Birth",
   "Date.Of.Death": "Date of Death",
   "end": "end",
-  "Aside.Gallery": "Gallery"
+  "Aside.Gallery": "Gallery",
+  "UserType": "User Type",
+  "CanUpload": "Can Upload",
+  "Hi": "Hi"
 }
