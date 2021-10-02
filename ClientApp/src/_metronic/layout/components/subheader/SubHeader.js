@@ -73,7 +73,9 @@ export function SubHeader() {
                         </Link>
                     </Route>
                     <Route path={"/users"}>
-                        <Link to={"/users/new"} className="btn btn-primary">
+                        <Link 
+                            // to={"/users/new"}
+                            className="btn btn-primary">
                             <FormattedMessage id={I18EN["SOLES.ADD"]}/>
                         </Link>
                     </Route>

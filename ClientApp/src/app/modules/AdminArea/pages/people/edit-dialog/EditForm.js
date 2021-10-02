@@ -68,7 +68,6 @@ export function EditForm({
                 onSubmit={saveItem}
             >
                 {(fProps) => {
-                    console.log(fProps)
                     return (<>
                         <Modal.Body className="overlay overlay-block cursor-default">
                             {actionsLoading && (
