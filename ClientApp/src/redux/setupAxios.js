@@ -68,7 +68,6 @@ export default function setupAxios(axios, store) {
                     // logoutClick()
                     window.location = "/logout";
                 }
-            debugger
             if(error.response?.data?.message > " "){
                 error.message = error.response?.data?.message
             }

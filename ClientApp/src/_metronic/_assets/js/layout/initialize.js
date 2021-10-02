@@ -86,7 +86,7 @@ KTUtil.ready(function() {
         KTLayoutDemoPanel.init('kt_demo_panel');
     }
 
-    // Init Chat App(quick modal chat)
+    // Init Chat ImagesCatalog(quick modal chat)
     if (typeof KTLayoutChat !== 'undefined') {
         KTLayoutChat.init('kt_chat_modal');
     }

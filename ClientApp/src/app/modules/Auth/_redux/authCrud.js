@@ -13,8 +13,8 @@ export function login(values) {
     // });
     return axios.post(LOGIN_URL, values);
 }
-export function register(email, fullname, username, password) {
-  return axios.post(REGISTER_URL, { email, fullname, username, password });
+export function register(user) {
+  return axios.post(REGISTER_URL, user);
 }
 
 export function requestPassword(email) {
