@@ -20,7 +20,12 @@ export function UserProfileDropdown() {
         "light",
     };
   }, [uiService]);
-
+    const { isAuthorized } = useSelector(
+        ({ auth }) => ({
+            isAuthorized: auth.user != null,
+        }),
+        shallowEqual
+    );
   return (
     <Dropdown drop="down" alignRight>
       <Dropdown.Toggle
@@ -51,12 +56,20 @@ export function UserProfileDropdown() {
                 <span className="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline my-3 ">
                   {user?.username}
                 </span>
-              <Link
-                  to="/logout"
-                  className="btn btn-light-primary font-weight-bold mx-3"
-              >
-                  Sign Out
-              </Link>
+              {
+                  isAuthorized ? ( <Link
+                      to="/logout"
+                      className="btn btn-light-primary font-weight-bold mx-3"
+                  >
+                      Sign Out
+                  </Link>) :(<Link
+                      className="btn btn-light-success btn-bold"
+                      to={"auth/login"}
+                  >
+                      Sign in
+                  </Link>)
+              }
+             
 
           </div>
         </>

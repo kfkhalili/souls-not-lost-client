@@ -15,12 +15,12 @@ export default function BasePage() {
     <Suspense fallback={<LayoutSplashScreen />}>
       <Switch>
         {
-          /* Redirect from root URL to /dashboard. */
-          <Redirect exact from="/" to="/dashboard" />
+          /* Redirect from root URL to /gallery. */
+          <Redirect exact from="/" to="/gallery" />
         }
         <Route  path="/users" component={UserPage}/>
         <Route  path="/people" component={PersonPage}/>
-        <Route path="/dashboard" component={DashboardPage} />
+        <Route path="/gallery" component={DashboardPage} />
         <Redirect to="error/error-v1" />
       </Switch>
     </Suspense>

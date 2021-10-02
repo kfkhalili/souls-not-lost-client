@@ -259,6 +259,9 @@ function Registration(props) {
                             Cancel
                         </button>
                     </Link>
+          <div>
+            <small className="text-dark">have account login from <Link to={"/auth/login"}>here</Link></small>
+          </div>
                 </div>
             </form>
         </div>

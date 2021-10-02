@@ -6,8 +6,6 @@ import {connect} from "react-redux";
 import {FormattedMessage, injectIntl} from "react-intl";
 import * as auth from "../_redux/authRedux";
 import {login} from "../_redux/authCrud";
-import {toAbsoluteUrl} from "../../../../_metronic/_helpers";
-import SVG from "react-inlinesvg";
 import {useSnackbar} from "notistack";
 import {I18EN} from "../../../../_metronic/i18n/Keys";
 
@@ -97,7 +95,7 @@ function Login(props) {
             );
             props.login(res.data.token);
             props.setUser({user:res.data})
-            setTimeout(() => history.push("/dashboard"), 1000);
+            setTimeout(() => history.push("/gallery"), 1000);
             console.log("data", res.data);
             disableLoading();
         } catch (error) {
@@ -171,7 +169,7 @@ function Login(props) {
                         </div>
                     ) : null}
                 </div>
-                <div className="form-group d-flex flex-wrap justify-content-end align-items-center">
+                <div className="form-group d-flex flex-wrap justify-content-center align-items-center">
                     {/*<Link*/}
                     {/*    to="/auth/forgot-password"*/}
                     {/*    className="text-dark-50 text-hover-primary my-3 mr-2"*/}
@@ -188,6 +186,9 @@ function Login(props) {
                         <span>Sign In</span>
                         {loading && <span className="ml-3 spinner spinner-white"/>}
                     </button>
+                </div>
+                <div>
+                    <small className="text-dark">Don't have account register from <Link to={"/auth/registration"}>here</Link></small>
                 </div>
             </form>
             {/*end::Form*/}

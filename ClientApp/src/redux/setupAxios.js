@@ -64,9 +64,9 @@ export default function setupAxios(axios, store) {
 
             if (error.response)
                 if ([401, 403].includes(error.response.status) && !window.location.pathname.includes("auth/login") ) {
-                    localStorage.setItem("auth-error", error.response.data.message || error.message)
+                    // localStorage.setItem("auth-error", error.response.data.message || error.message)
                     // logoutClick()
-                    window.location = "/logout";
+                    // window.location = "/logout";
                 }
             if(error.response?.data?.message > " "){
                 error.message = error.response?.data?.message

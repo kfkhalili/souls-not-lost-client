@@ -10,7 +10,7 @@ const ImagesCatalog = () => {
     useEffect(() => {
         const getImages = async () => {
 
-            const images = await axios.get("/api/person");
+            const images = await axios.get("/api/public/person");
             const imagesFromServer = [
                 {
                     name: "Ghassan Kanafani",

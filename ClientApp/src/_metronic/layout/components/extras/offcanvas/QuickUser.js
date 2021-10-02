@@ -16,6 +16,15 @@ export function QuickUser() {
     }
     history.push("/logout");
   };
+  const { isAuthorized } = useSelector(
+      ({ auth }) => ({
+        isAuthorized: auth.user != null,
+      }),
+      shallowEqual
+  );
+  if(!user){
+    return <></>;
+  }
 
   return (
     <div
@@ -34,22 +43,21 @@ export function QuickUser() {
           <i className="ki ki-close icon-xs text-muted" />
         </a>
       </div>
-
       <div className="offcanvas-content pr-5 mr-n5">
         <div className="d-flex align-items-center mt-5">
           <div className="symbol symbol-100 mr-5">
             <div
-              className="symbol-label"
-              style={{
-                backgroundImage: `url(${user.pic})`,
-              }}
+                className="symbol-label"
+                style={{
+                  backgroundImage: `url(${user.pic})`,
+                }}
             />
-            <i className="symbol-badge bg-success" />
+            <i className="symbol-badge bg-success"/>
           </div>
           <div className="d-flex flex-column">
             <a
-              href="#"
-              className="font-weight-bold font-size-h5 text-dark-75 text-hover-primary"
+                href="#"
+                className="font-weight-bold font-size-h5 text-dark-75 text-hover-primary"
             >
               {user.firstname} {user.lastname}
             </a>
@@ -60,9 +68,9 @@ export function QuickUser() {
                   <span className="navi-icon mr-1">
                     <span className="svg-icon-lg svg-icon-primary">
                       <SVG
-                        src={toAbsoluteUrl(
-                          "/media/svg/icons/Communication/Mail-notification.svg"
-                        )}
+                          src={toAbsoluteUrl(
+                              "/media/svg/icons/Communication/Mail-notification.svg"
+                          )}
                       ></SVG>
                     </span>
                   </span>
@@ -75,16 +83,24 @@ export function QuickUser() {
             {/* <Link to="/logout" className="btn btn-light-primary btn-bold">
                 Sign Out
               </Link> */}
-            <button
-              className="btn btn-light-primary btn-bold"
-              onClick={logoutClick}
-            >
-              Sign out
-            </button>
+            {
+              isAuthorized ? (<button
+                  className="btn btn-light-primary btn-bold"
+                  onClick={logoutClick}
+              >
+                Sign out
+              </button>) :(<Link
+                  className="btn btn-light-success btn-bold"
+                  to={"auth/login"}
+              >
+                Sign in
+              </Link>)
+            }
+
           </div>
         </div>
 
-        <div className="separator separator-dashed mt-8 mb-5" />
+        <div className="separator separator-dashed mt-8 mb-5"/>
 
         <div className="navi navi-spacer-x-0 p-0">
           <Link to="/user-profile" className="navi-item">
@@ -93,9 +109,9 @@ export function QuickUser() {
                 <div className="symbol-label">
                   <span className="svg-icon svg-icon-md svg-icon-success">
                     <SVG
-                      src={toAbsoluteUrl(
-                        "/media/svg/icons/General/Notification2.svg"
-                      )}
+                        src={toAbsoluteUrl(
+                            "/media/svg/icons/General/Notification2.svg"
+                        )}
                     ></SVG>
                   </span>
                 </div>
@@ -118,9 +134,9 @@ export function QuickUser() {
                 <div className="symbol-label">
                   <span className="svg-icon svg-icon-md svg-icon-warning">
                     <SVG
-                      src={toAbsoluteUrl(
-                        "/media/svg/icons/Shopping/Chart-bar1.svg"
-                      )}
+                        src={toAbsoluteUrl(
+                            "/media/svg/icons/Shopping/Chart-bar1.svg"
+                        )}
                     ></SVG>
                   </span>
                 </div>
@@ -138,9 +154,9 @@ export function QuickUser() {
                 <div className="symbol-label">
                   <span className="svg-icon svg-icon-md svg-icon-danger">
                     <SVG
-                      src={toAbsoluteUrl(
-                        "/media/svg/icons/Files/Selected-file.svg"
-                      )}
+                        src={toAbsoluteUrl(
+                            "/media/svg/icons/Files/Selected-file.svg"
+                        )}
                     ></SVG>
                   </span>
                 </div>
@@ -158,9 +174,9 @@ export function QuickUser() {
                 <div className="symbol-label">
                   <span className="svg-icon svg-icon-md svg-icon-primary">
                     <SVG
-                      src={toAbsoluteUrl(
-                        "/media/svg/icons/Communication/Mail-opened.svg"
-                      )}
+                        src={toAbsoluteUrl(
+                            "/media/svg/icons/Communication/Mail-opened.svg"
+                        )}
                     ></SVG>
                   </span>
                 </div>
@@ -181,15 +197,15 @@ export function QuickUser() {
           <div className="d-flex align-items-center bg-light-warning rounded p-5 gutter-b">
             <span className="svg-icon svg-icon-warning mr-5">
               <SVG
-                src={toAbsoluteUrl("/media/svg/icons/Home/Library.svg")}
-                className="svg-icon svg-icon-lg"
+                  src={toAbsoluteUrl("/media/svg/icons/Home/Library.svg")}
+                  className="svg-icon svg-icon-lg"
               ></SVG>
             </span>
 
             <div className="d-flex flex-column flex-grow-1 mr-2">
               <a
-                href="#"
-                className="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1"
+                  href="#"
+                  className="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1"
               >
                 Another purpose persuade
               </a>
@@ -204,14 +220,14 @@ export function QuickUser() {
           <div className="d-flex align-items-center bg-light-success rounded p-5 gutter-b">
             <span className="svg-icon svg-icon-success mr-5">
               <SVG
-                src={toAbsoluteUrl("/media/svg/icons/Communication/Write.svg")}
-                className="svg-icon svg-icon-lg"
+                  src={toAbsoluteUrl("/media/svg/icons/Communication/Write.svg")}
+                  className="svg-icon svg-icon-lg"
               ></SVG>
             </span>
             <div className="d-flex flex-column flex-grow-1 mr-2">
               <a
-                href="#"
-                className="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1"
+                  href="#"
+                  className="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1"
               >
                 Would be to people
               </a>
@@ -226,16 +242,16 @@ export function QuickUser() {
           <div className="d-flex align-items-center bg-light-danger rounded p-5 gutter-b">
             <span className="svg-icon svg-icon-danger mr-5">
               <SVG
-                src={toAbsoluteUrl(
-                  "/media/svg/icons/Communication/Group-chat.svg"
-                )}
-                className="svg-icon svg-icon-lg"
+                  src={toAbsoluteUrl(
+                      "/media/svg/icons/Communication/Group-chat.svg"
+                  )}
+                  className="svg-icon svg-icon-lg"
               ></SVG>
             </span>
             <div className="d-flex flex-column flex-grow-1 mr-2">
               <a
-                href="#"
-                className="font-weight-normel text-dark-75 text-hover-primary font-size-lg mb-1"
+                  href="#"
+                  className="font-weight-normel text-dark-75 text-hover-primary font-size-lg mb-1"
               >
                 Purpose would be to persuade
               </a>
@@ -250,15 +266,15 @@ export function QuickUser() {
           <div className="d-flex align-items-center bg-light-info rounded p-5">
             <span className="svg-icon svg-icon-info mr-5">
               <SVG
-                src={toAbsoluteUrl("/media/svg/icons/General/Attachment2.svg")}
-                className="svg-icon svg-icon-lg"
+                  src={toAbsoluteUrl("/media/svg/icons/General/Attachment2.svg")}
+                  className="svg-icon svg-icon-lg"
               ></SVG>
             </span>
 
             <div className="d-flex flex-column flex-grow-1 mr-2">
               <a
-                href="#"
-                className="font-weight-normel text-dark-75 text-hover-primary font-size-lg mb-1"
+                  href="#"
+                  className="font-weight-normel text-dark-75 text-hover-primary font-size-lg mb-1"
               >
                 The best product
               </a>

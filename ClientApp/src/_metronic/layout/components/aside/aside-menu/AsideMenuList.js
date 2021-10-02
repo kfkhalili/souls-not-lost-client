@@ -23,14 +23,14 @@ export function AsideMenuList({layoutProps}) {
             <ul className={`menu-nav ${layoutProps.ulClasses}`}>
                 {/*begin::1 Level*/}
                 <li
-                    className={`menu-item ${getMenuItemActive("/dashboard", false)}`}
+                    className={`menu-item ${getMenuItemActive("/gallery", false)}`}
                     aria-haspopup="true"
                 >
-                    <NavLink className="menu-link" to="/dashboard">
+                    <NavLink className="menu-link" to="/gallery">
             <span className="svg-icon menu-icon">
               <SVG src={toAbsoluteUrl("/media/svg/icons/Design/Layers.svg")}/>
             </span>
-                        <span className="menu-text">{<FormattedMessage id={I18EN["ASIDE.DASHBOARD"]}/>}</span>
+                        <span className="menu-text">{<FormattedMessage id={I18EN["Aside.Gallery"]}/>}</span>
                     </NavLink>
                 </li>
                 {/*end::1 Level*/}

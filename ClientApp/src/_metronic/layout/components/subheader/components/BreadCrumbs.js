@@ -11,11 +11,11 @@ export function BreadCrumbs({ items }) {
   return (
     <ul className="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2">
       <li className="breadcrumb-item  text-muted  ">
-        <Link to="/dashboard">
+        <Link to="/gallery">
           <i className="flaticon2-shelter  text-muted icon-1x ml-2" />
              <span className="mx-2">
 
-              <FormattedMessage id={"ASIDE.DASHBOARD"}/>
+              <FormattedMessage id={"Aside.Gallery"}/>
              </span>
           </Link>
       </li>
