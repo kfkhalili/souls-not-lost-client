@@ -33,7 +33,6 @@ export function Input({
     }
     if (!show)
         return <></>
-    debugger
     return (
         <>
             {I18Label && <label  className="text-capitalize" >{I18Label}</label>}

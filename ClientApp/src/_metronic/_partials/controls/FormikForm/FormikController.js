@@ -4,10 +4,11 @@ import {
     isTextInput, isSelectInput,
     isUploadInput, isUploadFile,
     isCheckBoxSelect, isTypeheadSelect,
+    isTypeheadSelectAllowNew,
     isCheckBox, isTextArea, isTimePicker
 } from '../Form/InputTypes';
 import {Field} from "formik";
-import {Checkbox, Input, CheckboxList, Select, FileUpload, TypeheadSelect, TextArea, DatePickerField} from "../index";
+import {Checkbox, Input, CheckboxList, Select, FileUpload, TypeheadSelect, TextArea, DatePickerField, TypeheadSelectAllowNew} from "../index";
 import {SingleTypeheadSelect} from "../forms/SingleTypeheadSelect";
 
 
@@ -66,6 +67,20 @@ const FormController = (props) => {
             />
         );
     }
+    if (isTypeheadSelectAllowNew(tag)) {
+
+        return (
+            <Field
+                name={name}
+                withFeedbackLabel
+                component={TypeheadSelectAllowNew}
+                placeholder={placeholder}
+                {...rest}
+
+            />
+        );
+    }
+    
     if (isTypeheadSelect(tag)) {
 
         return (

@@ -40,9 +40,10 @@ const useFields = () => {
         {
             id: uuid(),
             label: I18EN.Occupation,
-            tag: fieldTags.TextInput,
+            tag: fieldTags.TypeheadSelectAllowNew,
             name: 'occupation',
-            type: 'text',
+            getURL: "api/handle/api/general/occupations",
+            mapItems: toIds,
             initialValue: '',
         },
         {

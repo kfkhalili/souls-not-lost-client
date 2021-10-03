@@ -7,21 +7,9 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 import {Typeahead} from "react-bootstrap-typeahead";
 
 import *  as _ from "loadsh"
+import {translate} from "../../../_helpers/translate";
 
-const getFieldCSSClasses = (touched, errors) => {
-    const classes = [""];
-    if (touched && errors) {
-        classes.push("is-invalid-select");
-    }
-
-    if (touched && !errors) {
-        classes.push("is-valid-select");
-    }
-
-    return classes.join(" ");
-};
-
-export function TypeheadSelect({
+export function TypeheadSelectAllowNew({
                                    label,
                                    withFeedbackLabel = true,
                                    customFeedbackLabel,
@@ -59,40 +47,56 @@ export function TypeheadSelect({
         loadData();
     }, [getURL, form?.values?.[props?.dependent]]);
     const mapData = (selected) => {
-        if (_.isArray(data))
-            if (_.isArray(selected))
+        if (_.isArray(data)){
+            if (_.isArray(selected)){
                 return selected.map(item => {
                     if (_.isObject(item))
                         return item
-                    return data.find((i) => i.id === item)
+                    return data.find((i) => i.name === item)
                 })
-
-
-    }
-        let show = true;
-        if (_.isFunction(props.displayOn)) {
-            show = props.displayOn(form.values)
+            }
         }
-    if (!show)
-        return <></>
+    }
+    
+    if (form.values[field.name]?.length > 0 && !data) {
+        return <>
+            {label && <label><FormattedMessage id='Select'/> {I18Label}</label>}
+            <select disabled placeholder={I18Label} className="form-control">
+            </select>
+            {
+                withFeedbackLabel && (
+                    <FieldFeedbackLabel
+                        error={error}
+                        touched={touched}
+                        label={I18Label}
+                        type={"text"}
+                        customFeedbackLabel={customFeedbackLabel}
+                    />
+                )
+            }
+        </>
+    }
+
     return <>
         {label && <label><FormattedMessage id='Select'/> {I18Label}</label>}
         <Typeahead
+            allowNew
             type="checkbox"
             id={I18Label}
             labelKey={'name'}
             options={getURL > " " ? _.isArray(data) ? [...data] : [] : [...props.items]}
             placeholder={I18Label}
-            selected={mapData(form.values[field.name])}
+            // selected={mapData(form.values[field.name])}
             {...field}
             label={I18Label}
             isValid={touched && !error > " "}
             isInvalid={touched && error > " "}
             {...props}
             multiple
+            defaultSelected={mapData(form.values[field.name])}
             onChange={(value) => {
                 if (_.isArray(value))
-                    form.setFieldValue(field.name, value.map((val) => val.id))
+                    form.setFieldValue(field.name, value.map((val) => val.name))
             }}>
         </Typeahead>
         {

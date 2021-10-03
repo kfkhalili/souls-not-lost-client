@@ -20,6 +20,7 @@ export {FileUpload} from "./forms/FileUpload";
 export {HeaderCheckbox} from "./forms/HeaderCheckbox";
 export {TextArea} from "./forms/TextArea";
 export {TypeheadSelect} from "./forms/TypeheadSelect";
+export {TypeheadSelectAllowNew} from "./forms/TypeheadSelectAllowNew";
 
 
 // Paginations
