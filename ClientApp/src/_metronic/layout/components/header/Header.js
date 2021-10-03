@@ -4,6 +4,12 @@ import {useHtmlClassService} from "../../_core/MetronicLayout";
 import {Topbar} from "./Topbar";
 import {HeaderMenuWrapper} from "./header-menu/HeaderMenuWrapper";
 import {AnimateLoading} from "../../../_partials/controls";
+import {Container, Nav, Navbar} from "react-bootstrap";
+import {Link, useLocation} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {checkIsActive} from "../../../_helpers";
+import {FormattedMessage} from "react-intl";
+import {I18EN} from "../../../i18n/Keys";
 
 export function Header() {
   const uiService = useHtmlClassService();
@@ -16,10 +22,20 @@ export function Header() {
       menuHeaderDisplay: objectPath.get(
         uiService.config,
         "header.menu.self.display"
-      )
+      ),
+        headerLogo: uiService.getLogo()
     };
   }, [uiService]);
-
+    const location = useLocation();
+    const {user} = useSelector((state) => state.auth);
+    const getMenuItemActive = (url, hasSubmenu = false) => {
+        return checkIsActive(location, url)
+            ? ` ${!hasSubmenu &&
+            "menu-item-active"} menu-item-open menu-item-not-hightlighted`
+            : "";
+    };
+    const canSeePeople = user?.user?.canUpload || user?.user.userType === "admin";
+    const canSeeUsers = user?.user.userType === "admin";
   return (
     <>
       {/*begin::Header*/}
@@ -28,34 +44,31 @@ export function Header() {
         id="kt_header"
         {...layoutProps.headerAttributes}
       >
-        {/*begin::Container*/}
         <div className={` ${layoutProps.headerContainerClasses} d-flex align-items-stretch justify-content-between `}>
           <AnimateLoading />
-            <Logo></Logo>
-          {/*begin::Header Menu Wrapper*/}
+            <Navbar bg="dark" variant="dark">
+                <Container>
+                    <Navbar.Brand href="#home">  <div className="header-logo">
+                        <Link to="">
+                            <img style={{width:"50px"}} alt="logo" src={layoutProps.headerLogo}/>
+                        </Link>
+                    </div></Navbar.Brand>
+                    <Nav className="me-auto">
+                        <Link to="/gallery"> <span className="menu-text nav-link">{<FormattedMessage
+                            id={I18EN["Aside.Gallery"]}/>}</span></Link>
+                        <Link to="/people"> <span className="menu-text text-capitalize nav-link"><FormattedMessage
+                            id={I18EN["SOLES.Pepole"]}/></span></Link>
+                        <Link to="/users"><span className="menu-text text-capitalize nav-link"><FormattedMessage
+                            id={I18EN['SOLES.Users']}/></span></Link>
+                    </Nav>
+                </Container>
+            </Navbar>
           {layoutProps.menuHeaderDisplay && <HeaderMenuWrapper />}
           {!layoutProps.menuHeaderDisplay && <div />}
-          {/*end::Header Menu Wrapper*/}
-
-          {/*begin::Topbar*/}
           <Topbar />
-          {/*end::Topbar*/}
         </div>
-        {/*end::Container*/}
       </div>
       {/*end::Header*/}
     </>
   );
-}
-
-
-const Logo = () => {
-  return (
-      <div className="header-logo me-5 me-md-10 flex-grow-1 flex-lg-grow-0">
-        <a href="/metronic8/react/demo2/">
-          <img alt="Logo" src="/metronic8/react/demo2/media/logos/logo-4.png" className="logo-default h-25px" />
-          <img alt="Logo" src="/metronic8/react/demo2/media/logos/logo-5.png" className="logo-sticky h-25px" />
-        </a>
-      </div>
-);
 }

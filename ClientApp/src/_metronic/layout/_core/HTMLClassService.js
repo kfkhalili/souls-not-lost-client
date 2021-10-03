@@ -98,7 +98,7 @@ export class HtmlClassService {
     if (brandSkin === "light") {
       return toAbsoluteUrl("/images/soles-not-lost-logo.png");
     } else {
-      return toAbsoluteUrl("/images/soles-not-lost-logo.png");
+      return toAbsoluteUrl("/images/soles-not-lost-logo-light.png");
     }
   }
 

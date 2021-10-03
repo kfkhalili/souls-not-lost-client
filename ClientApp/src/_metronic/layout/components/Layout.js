@@ -37,7 +37,7 @@ export function Layout({ children }) {
         <>
             {/*begin::Main*/}
             <HeaderMobile/>
-            <div className="d-flex flex-column flex-root">
+            <div className="d-flex flex-column flex-root" style={{paddingTop:"80px"}}>
                 {/*begin::Page*/}
                 <div className="d-flex flex-row flex-column-fluid page">
                     {/*begin::Wrapper*/}

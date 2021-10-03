@@ -37,13 +37,13 @@ export function Topbar() {
   }, [uiService]);
   return (
     <div className="topbar">
-      {user ? <div className="d-flex w-30 align-items-center"> <div>Hi, {user.username}</div></div> : (<div className="d-flex w-30 align-items-center"><Link
+      {user ? <div className="d-flex w-30 align-items-center text-light"> <div>Hi, {user.username}</div></div> : (<div className="d-flex w-30 align-items-center"><Link
           className="btn btn-light-success btn-bold btn-sm"
           to={"auth/login"}
       >
         Sign in
       </Link></div>)}
-      {layoutProps.viewLanguagesDisplay && <LanguageSelectorDropdown />}
+      {/*{layoutProps.viewLanguagesDisplay && <LanguageSelectorDropdown />}*/}
       {layoutProps.viewUserDisplay && <QuickUserToggler />}
     </div>
   );
