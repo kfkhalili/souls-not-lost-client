@@ -4,48 +4,39 @@
 // https://hackernoon.com/react-form-validation-with-formik-and-yup-8b76bda62e10
 import React from "react";
 import {Modal} from "react-bootstrap";
-import {Formik, Form, Field} from "formik";
+import {Formik} from "formik";
 import * as Yup from "yup";
-import {
-    Input,
-    Select,
-    DatePickerField,
-} from "../../../../../../_metronic/_partials/controls";
 import FormikForm from "../../../../../../_metronic/_partials/controls/FormikForm";
 import useFields from "./fields";
 import {CancelButton, SaveButton} from "../../../../../../_metronic/_TransaltedButtons";
-
-// Validation schema
-const PersonEditSchema = Yup.object().shape({
-    personname: Yup.string()
-        .min(3, "Minimum 3 symbols")
-        .max(50, "Maximum 50 symbols")
-        .required("required"),
-    password: Yup.string()
-        .min(3, "Minimum 3 symbols")
-        .max(50, "Maximum 50 symbols")
-        .required("required"),
-    firstName: Yup.string()
-        .min(3, "Minimum 3 symbols")
-        .max(50, "Maximum 50 symbols")
-        .required("required"),
-    lastName: Yup.string()
-        .min(3, "Minimum 3 symbols")
-        .max(50, "Maximum 50 symbols")
-        .required("required"),
-    status: Yup.number().required("required"),
-    roleId: Yup.number().required("required"),
-    notes: Yup.string()
-});
+import {shallowEqual, useSelector} from "react-redux";
+const mapData = (entity) => {
+    if(!entity)
+        return;
+    return  {
+        ...entity,
+        birth: new Date(entity.birth),
+        death: new Date(entity.death),
+        nationality: entity.nationality?._id,
+        occupation: entity.occupation?._id,
+        causeOfDeath: entity.causeOfDeath?._id,
+        deathPlace: entity.deathPlace?._id
+    }
+}
 
 export function EditForm({
                              saveItem,
                              item,
-                             actionsLoading,
                              onHide,
                          }) {
-    const {fields, initialValues} = useFields(!(item?.personname > " "));
-    // Validation schema
+    const {actionsLoading, personForEdit} = useSelector(
+        (state) => ({
+            actionsLoading: state.people.actionsLoading,
+            personForEdit: state.people.personForEdit,
+        }),
+        shallowEqual
+    );
+    const {fields, initialValues} = useFields(personForEdit);
     const PersonEditSchema = Yup.object().shape({
         name: Yup.string()
             .min(3, "Minimum 3 symbols")
@@ -57,13 +48,13 @@ export function EditForm({
         occupation: Yup.string().required(),
         causeOfDeath: Yup.string().required(),
         picture: Yup.mixed().required()
-
     });
+
     return (
         <>
             <Formik
                 enableReinitialize={true}
-                initialValues={item || initialValues}
+                initialValues={mapData(personForEdit) || initialValues}
                 validationSchema={PersonEditSchema}
                 onSubmit={saveItem}
             >

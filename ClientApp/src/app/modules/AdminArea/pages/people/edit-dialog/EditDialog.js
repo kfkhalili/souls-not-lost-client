@@ -39,26 +39,8 @@ export const useClient = ({url, state, callback, isFormData= false}) => {
 }
 
 export function EditDialog({id, show, onHide}) {
-    // People UI Context
-    const UIContext = useUIContext();
-    const UIProps = useMemo(() => {
-        return {
-            initPerson: UIContext.initPerson,
-        };
-    }, [UIContext]);
-
-    // People Redux state
     const dispatch = useDispatch();
-    const {actionsLoading, personForEdit} = useSelector(
-        (state) => ({
-            actionsLoading: state.people.actionsLoading,
-            personForEdit: state.people.personForEdit,
-        }),
-        shallowEqual
-    );
-
     useEffect(() => {
-        // server call for getting Person by id
         dispatch(actions.fetchPerson(id));
     }, [id, dispatch]);
 
@@ -82,8 +64,6 @@ export function EditDialog({id, show, onHide}) {
             <EditDialogHeader id={id}/>
             <EditForm
                 saveItem={request}
-                actionsLoading={actionsLoading}
-                item={personForEdit}
                 onHide={onHide}
             />
         </Modal>

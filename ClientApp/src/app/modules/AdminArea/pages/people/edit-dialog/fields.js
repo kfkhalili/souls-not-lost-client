@@ -4,7 +4,7 @@ import {I18EN} from "../../../../../../_metronic/i18n/Keys";
 import {fieldTags} from "../../../../../../_metronic/_partials/controls/Form/InputTypes";
 import {toIds} from "../../../helpers/maplist";
 
-const useFields = (isAdd) => {
+const useFields = () => {
     const fields = [
         {
             id: uuid(),
@@ -40,11 +40,9 @@ const useFields = (isAdd) => {
         {
             id: uuid(),
             label: I18EN.Occupation,
-            tag: fieldTags.SelectInput,
+            tag: fieldTags.TextInput,
             name: 'occupation',
-            type: 'select',
-            getURL: "api/handle/api/general/nationalities",
-            mapItems: toIds,
+            type: 'text',
             initialValue: '',
         },
         {

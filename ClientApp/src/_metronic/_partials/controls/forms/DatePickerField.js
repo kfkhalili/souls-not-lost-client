@@ -28,21 +28,12 @@ export function DatePickerField({  field, // { name, value, onChange, onBlur }
         style={{ width: "100%" ,display:'block'}}
         {...field}
         {...props}
-        selected={field.value }
+        selected={field.value}
         onChange={val => {
 
           setFieldValue(field.name, val);
         }}
       />
-      {/*{errors[field.name] && touched[field.name] ? (*/}
-      {/*  <div className="invalid-datepicker-feedback">*/}
-      {/*    {errors[field.name].toString()}*/}
-      {/*  </div>*/}
-      {/*) : (*/}
-      {/*  <div className="feedback">*/}
-      {/*    Please enter <b>{props.label}</b> in 'mm/dd/yyyy' format*/}
-      {/*  </div>*/}
-      {/*)}*/}
     </>
   );
 }
