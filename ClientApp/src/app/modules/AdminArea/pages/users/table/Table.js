@@ -89,7 +89,7 @@ export function Table() {
             sort: true,
             sortCaret: sortCaret,
             headerSortingClasses,
-            formatter: (col) => col ? <span className="label label-lg label-light-success label-inline">Can upload</span> : <span className="label label-lg label-light-danger label-inline">Can't upload</span>
+            formatter: (col) => col ? <span className="label label-lg label-light-success label-inline">True</span> : <span className="label label-lg label-light-danger label-inline">False</span>
         },
         {
             dataField: "createdDate",

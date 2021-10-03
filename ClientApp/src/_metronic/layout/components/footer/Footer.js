@@ -14,7 +14,7 @@ export function Footer() {
 
   return (
     <div
-      className={`footer bg-white py-4 d-flex flex-lg-column  ${layoutProps.footerClasses}`}
+      className={`footer bg-dark py-4 d-flex flex-lg-column  ${layoutProps.footerClasses} opacity-50`}
       id="kt_footer"
     >
       <div
@@ -26,9 +26,9 @@ export function Footer() {
             href="https://ocost.co/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-dark-75 text-hover-primary"
+            className="text-dark-75 text-hover-light"
           >
-            Soles
+            Soles not lost
           </a>
         </div>
         <div className="nav nav-dark order-1 order-md-2">
