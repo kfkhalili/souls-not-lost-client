@@ -76,7 +76,7 @@ export function Table() {
         {
             dataField: "name",
             text: intl.formatMessage({
-                id: I18EN["SOLES.Person"]
+                id: I18EN["SOLES.Name"]
             }),
             sort: true,
             sortCaret: sortCaret,
@@ -99,18 +99,6 @@ export function Table() {
             sortCaret: sortCaret,
             formatter: (date) => {
                 return moment(date).format('yyyy-MM-DD HH:mm')
-            },
-            headerSortingClasses,
-        },
-        {
-            dataField: "birthplace",
-            text: intl.formatMessage({
-                id: I18EN["PlaceOfBirth"]
-            }),
-            sort: true,
-            sortCaret: sortCaret,
-            formatter: (model) => {
-                return model?.name
             },
             headerSortingClasses,
         },
