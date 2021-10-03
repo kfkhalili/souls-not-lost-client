@@ -80,10 +80,8 @@ export function SingleTypeheadSelectAllowNew({
             if (_.isArray(data))
                 if (selected > " ") {
                     let res;
-                    if(+selected){
-                        res = data.find((i) => i.id === +selected)
-                    }else{
-                        res = data.find((i) => i.id === selected)
+                    if(selected){
+                        res = data.find((i) => i.name === selected)
                     }
                     if (res)
                         return [res]
@@ -97,13 +95,21 @@ export function SingleTypeheadSelectAllowNew({
                 }
         } else {
             if (_.isArray(props.items)) {
-                let res = props.items.find((i) => i.id === selected)
+                let res = props.items.find((i) => i.name === selected)
                 if (res)
                     return [res]
             }
         }
         return []
     }
+
+    const [selected, setSelected] = useState(form.values[field.name]);
+    useEffect(()=>{
+        if(!(form.values[field.name] === selected)){
+            setSelected(form.values[field.name]);
+        }
+    },[form.values[field.name], data])
+    
     let show = true;
     if (_.isFunction(props.displayOn)) {
         show = props.displayOn(form.values)
@@ -121,6 +127,10 @@ export function SingleTypeheadSelectAllowNew({
     if (!(options?.length > 0))
         showTypehead = false
 
+    if (field.value && !(options?.length > 0) )
+        showTypehead = false
+
+
     const defaultSelect = mapData(field.value)
     if (!_.isArray(defaultSelect))
         showTypehead = false
@@ -130,7 +140,7 @@ export function SingleTypeheadSelectAllowNew({
 
     if (!showTypehead)
         return <>
-            {label && <label><FormattedMessage id='Select'/> {I18Label}</label>}
+            {label && <label><FormattedMessage id='Select'/> {I18Label}{selected}</label>}
             <select disabled placeholder={I18Label} className="form-control">
                 <option value="no-data" selected={!props.isAll}/>
                 <option value="" selected={props.isAll}>  {translate("All")}</option>
@@ -148,9 +158,10 @@ export function SingleTypeheadSelectAllowNew({
             }
         </>
     return <>
-        {label && <label>{I18Label}</label>}
+        {label && <label>{I18Label} {selected}</label>}
         <div className="position-relative">
             <Typeahead
+                allowNew
                 clearButton
                 type="checkbox"
                 name={field.name}
@@ -159,25 +170,25 @@ export function SingleTypeheadSelectAllowNew({
                 id={I18Label}
                 ref={ref}
                 labelKey={'name'}
-                selected={mapData(field.value)}
-                options={_.isArray(options) ? props.isAll ? [{
-                    id: "",
-                    name: translate("All")
-                }, ...options] : options : []}
+                options={_.isArray(options) ? options : []}
                 positionFixed
                 placeholder={I18Label}
-                defaultSelected={defaultSelect}
+                selected={selected ? [selected] : []}
                 label={I18Label}
                 isValid={touched && !error > " "}
                 isInvalid={touched && error > " "}
                 onChange={(value) => {
-                    if (_.isArray(value)) {
-                        if (value.length > 0) {
-                            form.setFieldValue(field.name, value[0].id)
-                        } else {
-                            form.setFieldValue(field.name, null)
+                    debugger
+                    let result = [];
+                    for (const key in value) {
+                        if(_.isObject(value[key])){
+                            result.push(value[key].name)
+                        }else{
+                            result.push(value[key])
                         }
                     }
+                    setSelected(result[0])
+                    form.setFieldValue(field.name, result[0])
                 }}
                 onFocus={
                     (value) => {
@@ -187,7 +198,7 @@ export function SingleTypeheadSelectAllowNew({
 
                         }
                         if (field.value > " ") {
-                            let placeholder = mapData(field.value)[0].name;
+                            let placeholder = field.value;
                             if (placeholder) {
                                 value.target.placeholder = placeholder
                             } else {

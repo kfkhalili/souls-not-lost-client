@@ -19,7 +19,7 @@ const mapData = (entity) => {
         death: new Date(entity.death),
         nationality: entity.nationality?._id,
         occupation: entity.occupation,
-        causeOfDeath: entity.causeOfDeath?._id,
+        causeOfDeath: entity.causeOfDeath,
         deathPlace: entity.deathPlace?._id
     }
 }
@@ -47,7 +47,7 @@ export function EditForm({
         nationality: Yup.string().required(),
         occupation: Yup.array().required(),
         causeOfDeath: Yup.string().required(),
-        picture: Yup.mixed().required()
+        // picture: Yup.mixed().required()
     });
 
     return (
