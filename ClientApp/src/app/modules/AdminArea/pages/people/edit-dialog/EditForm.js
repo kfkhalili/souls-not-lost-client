@@ -18,7 +18,7 @@ const mapData = (entity) => {
         birth: new Date(entity.birth),
         death: new Date(entity.death),
         nationality: entity.nationality?._id,
-        occupation: entity.occupation?._id,
+        occupation: entity.occupation,
         causeOfDeath: entity.causeOfDeath?._id,
         deathPlace: entity.deathPlace?._id
     }

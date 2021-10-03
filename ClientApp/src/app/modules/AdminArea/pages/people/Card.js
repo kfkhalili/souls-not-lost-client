@@ -13,6 +13,7 @@ import {Button, Spinner} from "react-bootstrap";
 import * as actions from "../../_redux/people/actions";
 import {useRefresh} from "../../hooks/refresh";
 import {useUIContext} from "./UIContext";
+import {Link} from "react-router-dom";
 
 export function Card() {
     const intl = useIntl()
@@ -33,6 +34,11 @@ export function Card() {
                         {RefreshState.listLoading && <Spinner/>}
                     </Button>
                 </CardHeaderTitle>
+                    <CardHeaderToolbar>
+                        <Link to={"/people/new"} className="btn btn-primary">
+                            <FormattedMessage id={I18EN["SOLES.ADD"]}/>
+                        </Link>
+                    </CardHeaderToolbar>
             </CardHeader>
             <CardBody>
                 {/*<Filter/>*/}
