@@ -21,6 +21,7 @@ export {HeaderCheckbox} from "./forms/HeaderCheckbox";
 export {TextArea} from "./forms/TextArea";
 export {TypeheadSelect} from "./forms/TypeheadSelect";
 export {TypeheadSelectAllowNew} from "./forms/TypeheadSelectAllowNew";
+export {SingleTypeheadSelectAllowNew} from "./forms/SingleTypeheadSelectAllowNew";
 
 
 // Paginations

@@ -57,7 +57,12 @@ export function TypeheadSelectAllowNew({
             }
         }
     }
-    
+    const [selected, setSelected] = useState(form.values[field.name]);
+    useEffect(()=>{
+        if(!(form.values[field.name]?.length === selected?.length)){
+            setSelected(form.values[field.name]);
+        }
+    },[form.values[field.name], data])
     if (form.values[field.name]?.length > 0 && !data) {
         return <>
             {label && <label><FormattedMessage id='Select'/> {I18Label}</label>}
@@ -86,17 +91,25 @@ export function TypeheadSelectAllowNew({
             labelKey={'name'}
             options={getURL > " " ? _.isArray(data) ? [...data] : [] : [...props.items]}
             placeholder={I18Label}
-            // selected={mapData(form.values[field.name])}
             {...field}
             label={I18Label}
             isValid={touched && !error > " "}
             isInvalid={touched && error > " "}
             {...props}
             multiple
-            defaultSelected={mapData(form.values[field.name])}
+            selected={selected}
             onChange={(value) => {
-                if (_.isArray(value))
-                    form.setFieldValue(field.name, value.map((val) => val.name))
+                let result = [];
+                for (const key in value) {
+                    if(_.isObject(value[key])){
+                        result.push(value[key].name)
+                    }else{
+                        result.push(value[key])
+                    }
+                }
+                setSelected(result)
+                if (_.isArray(result))
+                    form.setFieldValue(field.name, result)
             }}>
         </Typeahead>
         {

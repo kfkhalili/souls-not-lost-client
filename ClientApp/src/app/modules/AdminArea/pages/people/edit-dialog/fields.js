@@ -49,7 +49,7 @@ const useFields = () => {
         {
             id: uuid(),
             label: I18EN.CauseOfDeath,
-            tag: fieldTags.SelectInput,
+            tag: fieldTags.SingleTypeheadSelectAllowNew,
             name: 'causeOfDeath',
             type: 'select',
             getURL: "api/handle/api/general/causeofdeath",

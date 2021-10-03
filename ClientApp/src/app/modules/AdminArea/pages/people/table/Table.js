@@ -154,9 +154,6 @@ export function Table() {
             }),
             sort: true,
             sortCaret: sortCaret,
-            formatter: (model) => {
-                return model?.name
-            },
             headerSortingClasses,
         },
         {

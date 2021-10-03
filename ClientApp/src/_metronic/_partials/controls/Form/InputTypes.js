@@ -8,6 +8,7 @@ const isCheckBox = (tag) => tag === 'checkbox';
 const isTypeheadSelect = (tag) => tag === 'typeheadSelect';
 const isTextArea = (tag) => tag === 'textarea';
 const isTypeheadSelectAllowNew = (tag) => tag === 'typeheadSelectAllowNew';
+const isSingleTypeheadSelectAllowNew = (tag) => tag === 'singleTypeheadSelectAllowNew';
 
 export const fieldTags = {
     TextInput: 'input',
@@ -19,6 +20,7 @@ export const fieldTags = {
     CheckBox: 'checkbox',
     TypeheadSelect: 'typeheadSelect',
     TypeheadSelectAllowNew: 'typeheadSelectAllowNew',
+    SingleTypeheadSelectAllowNew: 'singleTypeheadSelectAllowNew',
     TextArea: 'textarea'
 }
 
@@ -32,5 +34,6 @@ export {
     isTypeheadSelect,
     isTextArea,
     isTimePicker,
+    isSingleTypeheadSelectAllowNew,
     isTypeheadSelectAllowNew
 };
