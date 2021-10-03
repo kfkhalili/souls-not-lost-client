@@ -9,7 +9,7 @@ export function SplashScreen() {
                 {/*<div className="h-200px w-200px">*/}
                 {/*    <img*/}
                 {/*        src="%PUBLIC_URL%/images/soles-not-lost-logo.png"*/}
-                {/*        alt="Souls not Lost"*/}
+                {/*        alt="Soles not Lost"*/}
                 {/*    />*/}
                 {/*    <svg className="splash-spinner" viewBox="0 0 50 50">*/}
                 {/*        <circle*/}
