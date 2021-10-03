@@ -40,16 +40,15 @@ export function Layout({ children }) {
             <div className="d-flex flex-column flex-root">
                 {/*begin::Page*/}
                 <div className="d-flex flex-row flex-column-fluid page">
-                    {layoutProps.asideDisplay && (<Aside/>)}
                     {/*begin::Wrapper*/}
-                    <div className="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+                    <div className="d-flex flex-column flex-row-fluid " id="kt_wrapper">
                         <Header/>
                         {/*begin::Content*/}
                         <div
                             id="kt_content"
                             className={`content ${layoutProps.contentCssClasses} d-flex flex-column flex-column-fluid`}
                         >
-                            {layoutProps.subheaderDisplay && <SubHeader/>}
+                            {/*{layoutProps.subheaderDisplay && <SubHeader/>}*/}
                             {/*begin::Entry*/}
                             {!layoutProps.contentExtended && (
                                 <div className="d-flex flex-column-fluid">

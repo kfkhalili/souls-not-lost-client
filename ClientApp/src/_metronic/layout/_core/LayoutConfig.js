@@ -74,7 +74,7 @@ export function getInitLayoutConfig() {
     header: {
       self: {
         width: "fluid", // fixed|fluid
-        theme: "light", // light|dark
+        theme: "dark", // light|dark
         fixed: {
           desktop: true,
           mobile: true,
@@ -91,13 +91,13 @@ export function getInitLayoutConfig() {
           arrow: true,
           toggle: "click",
           submenu: {
-            theme: "light", // light|dark
+            theme: "dark", // light|dark
             arrow: true,
           },
         },
         mobile: {
           submenu: {
-            theme: "light",
+            theme: "dark",
             accordion: true,
           },
         },
@@ -118,12 +118,12 @@ export function getInitLayoutConfig() {
     },
     brand: {
       self: {
-        theme: "light", // light/dark
+        theme: "dark", // light/dark
       },
     },
     aside: {
       self: {
-        theme: "light", // light/dark
+        theme: "dark", // light/dark
         display: true,
         fixed: true,
         minimize: {
@@ -168,7 +168,7 @@ export function getInitLayoutConfig() {
         display: true,
         layout: "dropdown", // offcanvas, dropdown
         dropdown: {
-          style: "light", // light, dark
+          style: "dark", // light, dark
         },
         offcanvas: {
           directions: "right",
@@ -178,7 +178,7 @@ export function getInitLayoutConfig() {
         display: true,
         layout: "dropdown", // offcanvas, dropdown,
         dropdown: {
-          style: "light", // light, dark
+          style: "dark", // light, dark
         },
         offcanvas: {
           directions: "right",
@@ -188,7 +188,7 @@ export function getInitLayoutConfig() {
         display: true,
         layout: "dropdown", // offcanvas, dropdown
         dropdown: {
-          style: "light",
+          style: "dark",
         },
         offcanvas: {
           directions: "right",
@@ -200,13 +200,13 @@ export function getInitLayoutConfig() {
       cart: {
         display: true,
         dropdown: {
-          style: "light", // ligth, dark
+          style: "dark", // ligth, dark
         },
       },
       "quick-panel": {
         display: true,
         offcanvas: {
-          directions: "right",
+          directions: "dark",
         },
       },
       chat: {

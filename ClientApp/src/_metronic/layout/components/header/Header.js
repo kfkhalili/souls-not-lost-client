@@ -31,6 +31,7 @@ export function Header() {
         {/*begin::Container*/}
         <div className={` ${layoutProps.headerContainerClasses} d-flex align-items-stretch justify-content-between `}>
           <AnimateLoading />
+            <Logo></Logo>
           {/*begin::Header Menu Wrapper*/}
           {layoutProps.menuHeaderDisplay && <HeaderMenuWrapper />}
           {!layoutProps.menuHeaderDisplay && <div />}
@@ -45,4 +46,16 @@ export function Header() {
       {/*end::Header*/}
     </>
   );
+}
+
+
+const Logo = () => {
+  return (
+      <div className="header-logo me-5 me-md-10 flex-grow-1 flex-lg-grow-0">
+        <a href="/metronic8/react/demo2/">
+          <img alt="Logo" src="/metronic8/react/demo2/media/logos/logo-4.png" className="logo-default h-25px" />
+          <img alt="Logo" src="/metronic8/react/demo2/media/logos/logo-5.png" className="logo-sticky h-25px" />
+        </a>
+      </div>
+);
 }
