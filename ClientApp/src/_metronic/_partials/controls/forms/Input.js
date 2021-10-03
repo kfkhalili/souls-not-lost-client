@@ -33,6 +33,7 @@ export function Input({
     }
     if (!show)
         return <></>
+    debugger
     return (
         <>
             {I18Label && <label  className="text-capitalize" >{I18Label}</label>}
@@ -42,12 +43,12 @@ export function Input({
                 {...props}
                 label={I18Label}
             />
-            {withFeedbackLabel && errors[field.name] > " " && touched[field.name] && (
+            {(withFeedbackLabel && errors[field.name] > " " && touched[field.name]) && (
                 <FieldFeedbackLabel
                     error={errors[field.name]}
                     touched={touched[field.name]}
                     label={I18Label}
-                    type={props.type}
+                    type={"text"}
                     customFeedbackLabel={customFeedbackLabel}
                 />
             )}

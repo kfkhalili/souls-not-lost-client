@@ -148,8 +148,7 @@ export function SingleTypeheadSelect({
             }
         </>
     return <>
-        {label && <label>
-            <FormattedMessage id='Select'/> {I18Label}</label>}
+        {label && <label>{I18Label}</label>}
         <div className="position-relative">
             <Typeahead
                 clearButton

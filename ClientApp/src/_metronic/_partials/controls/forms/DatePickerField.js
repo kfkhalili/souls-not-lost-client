@@ -1,6 +1,8 @@
 import React from "react";
 import {useField, useFormikContext} from "formik";
 import DatePicker from "react-datepicker";
+import {FieldFeedbackLabel} from "./FieldFeedbackLabel";
+import {useIntl} from "react-intl";
 
 const getFieldCSSClasses = (touched, errors) => {
   const classes = ["form-control"];
@@ -16,13 +18,16 @@ const getFieldCSSClasses = (touched, errors) => {
 };
 
 export function DatePickerField({  field, // { name, value, onChange, onBlur }
+                                    label,
                                   form: {touched, errors, values, setFieldValue}, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
                                   withFeedbackLabel = true,
                                   customFeedbackLabel,
                                   ...props }) {
-  return (
+    const intl = useIntl();
+    const I18Label = intl.formatMessage({id: label, defaultMessage: label})
+    return (
     <>
-      {props.label && <label className={"d-block"}>{props.label}</label>}
+      {label && <label className={"d-block"}>{label}</label>}
       <DatePicker
         className={getFieldCSSClasses(touched[field.name], errors[field.name])}
         style={{ width: "100%" ,display:'block'}}
@@ -34,6 +39,15 @@ export function DatePickerField({  field, // { name, value, onChange, onBlur }
           setFieldValue(field.name, val);
         }}
       />
+        {(withFeedbackLabel && errors[field.name] > " " && touched[field.name]) && (
+            <FieldFeedbackLabel
+                error={errors[field.name]}
+                touched={touched[field.name]}
+                label={I18Label}
+                type={"text"}
+                customFeedbackLabel={customFeedbackLabel}
+            />
+        )}
     </>
   );
 }
