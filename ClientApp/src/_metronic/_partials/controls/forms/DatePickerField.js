@@ -1,5 +1,4 @@
 import React from "react";
-import {useField, useFormikContext} from "formik";
 import DatePicker from "react-datepicker";
 import {FieldFeedbackLabel} from "./FieldFeedbackLabel";
 import {useIntl} from "react-intl";
@@ -38,6 +37,7 @@ export function DatePickerField({  field, // { name, value, onChange, onBlur }
 
           setFieldValue(field.name, val);
         }}
+        dateFormat="dd.MM.yyyy"
       />
         {(withFeedbackLabel && errors[field.name] > " " && touched[field.name]) && (
             <FieldFeedbackLabel
