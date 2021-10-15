@@ -15,14 +15,14 @@ const useFields = () => {
         },
         {
             id: uuid(),
-            label: I18EN.BirthDate,
+            label: I18EN["Date.Of.Birth"],
             tag: fieldTags.TimePicker,
             name: 'birth',
             type: 'date',
         },
         {
             id: uuid(),
-            label: I18EN.DeathDate,
+            label: I18EN["Date.Of.Death"],
             tag: fieldTags.TimePicker,
             name: 'death',
             type: 'date',

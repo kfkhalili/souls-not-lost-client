@@ -26,7 +26,7 @@ export function DatePickerField({  field, // { name, value, onChange, onBlur }
     const I18Label = intl.formatMessage({id: label, defaultMessage: label})
     return (
     <>
-      {label && <label className={"d-block"}>{label}</label>}
+      {I18Label && <label className={"d-block"}>{I18Label}</label>}
       <DatePicker
         className={getFieldCSSClasses(touched[field.name], errors[field.name])}
         style={{ width: "100%" ,display:'block'}}

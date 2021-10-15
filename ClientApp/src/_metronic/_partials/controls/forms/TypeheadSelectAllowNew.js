@@ -7,7 +7,6 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 import {Typeahead} from "react-bootstrap-typeahead";
 
 import *  as _ from "loadsh"
-import {translate} from "../../../_helpers/translate";
 
 export function TypeheadSelectAllowNew({
                                    label,
@@ -83,7 +82,7 @@ export function TypeheadSelectAllowNew({
     }
 
     return <>
-        {label && <label><FormattedMessage id='Select'/> {I18Label}</label>}
+        {label && <label>{I18Label}</label>}
         <Typeahead
             allowNew
             type="checkbox"

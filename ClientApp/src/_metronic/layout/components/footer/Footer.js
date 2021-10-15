@@ -28,7 +28,7 @@ export function Footer() {
             rel="noopener noreferrer"
             className="text-dark-75 text-hover-light"
           >
-            Soles not lost
+            Souls not Lost
           </a>
         </div>
         <div className="nav nav-dark order-1 order-md-2">
