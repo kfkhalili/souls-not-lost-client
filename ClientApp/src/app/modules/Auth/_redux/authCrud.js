@@ -4,6 +4,7 @@ import {API} from "../../../../constants";
 export const LOGIN_URL = "api/auth/login";
 export const REGISTER_URL = "api/auth/register";
 export const REQUEST_PASSWORD_URL ="api/auth/forgot-password";
+export const RESET_PASSWORD_URL ="api/auth/resetpassword";
 
 export const ME_URL = "api/me";
 export function login(values) {
@@ -19,6 +20,10 @@ export function register(user) {
 
 export function requestPassword(email) {
   return axios.post(REQUEST_PASSWORD_URL, { email });
+}
+
+export function resetPassword(payload) {
+  return axios.post(RESET_PASSWORD_URL, payload);
 }
 
 export function getUserByToken() {

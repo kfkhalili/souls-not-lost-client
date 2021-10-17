@@ -227,7 +227,7 @@ export class HtmlClassService {
     }
 
     if (objectPath.get(this.config, "content.width") === "fluid") {
-      objectPath.push(this.classes, "content_container", "container-fluid");
+      objectPath.push(this.classes, "content_container", "container-fluid m-0 p-0");
     } else {
       objectPath.push(this.classes, "content_container", "container");
     }

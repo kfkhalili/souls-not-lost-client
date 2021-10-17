@@ -20,7 +20,7 @@ const ImagesCatalog = () => {
     }
 
     return (
-        <div id="imagesContainer" style={{margin: "-39px -26px"} }>
+        <div id="imagesContainer">
             {persons.map((person) => (
                 <Image key={person.name} person={person}/>
             ))}

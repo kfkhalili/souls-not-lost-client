@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
     imgHover: {filter: 'grayscale(100%)'},
 
-    figure: {position:'relative'},
+    figure: {position:'relative', marginBottom:0},
   }));
 
 const Image = ({ person }) => {

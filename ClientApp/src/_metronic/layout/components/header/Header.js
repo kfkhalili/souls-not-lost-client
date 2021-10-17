@@ -27,7 +27,16 @@ export function Header() {
         headerLogo: uiService.getLogo()
     };
   }, [uiService]);
-
+    const location = useLocation();
+    const {user} = useSelector((state) => state.auth);
+    const getMenuItemActive = (url, hasSubmenu = false) => {
+        return checkIsActive(location, url)
+            ? ` ${!hasSubmenu &&
+            "menu-item-active"} menu-item-open menu-item-not-hightlighted`
+            : "";
+    };
+    const canSeePeople = user?.user?.canUpload || user?.user.userType === "admin";
+    const canSeeUsers = user?.user.userType === "admin";
 
   return (
     <>
@@ -49,10 +58,10 @@ export function Header() {
                     <div className="d-flex align-items-center h-100">
                         <Link to="/gallery"> <span className="menu-text text-capitalize nav-link text-dark-25 text-hover-light">{<FormattedMessage
                             id={I18EN["Aside.Gallery"]}/>}</span></Link>
-                        <Link to="/people"> <span className="menu-text text-capitalize nav-link text-dark-25 text-hover-light"><FormattedMessage
-                            id={I18EN["SOLES.Pepole"]}/></span></Link>
-                        <Link to="/users"><span className="menu-text text-capitalize nav-link text-dark-25 text-hover-light"><FormattedMessage
-                            id={I18EN['SOLES.Users']}/></span></Link>
+                        {canSeePeople && <Link to="/people"> <span className="menu-text text-capitalize nav-link text-dark-25 text-hover-light"><FormattedMessage
+                            id={I18EN["SOLES.Pepole"]}/></span></Link>}
+                        {canSeeUsers && <Link to="/users"><span className="menu-text text-capitalize nav-link text-dark-25 text-hover-light"><FormattedMessage
+                            id={I18EN['SOLES.Users']}/></span></Link>}
                     </div>
                 </div>
             </div>

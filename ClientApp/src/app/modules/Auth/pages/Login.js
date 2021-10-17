@@ -189,6 +189,9 @@ function Login(props) {
                 </div>
                 <div>
                     <small className="text-dark">Don't have account register from <Link to={"/auth/registration"}>here</Link></small>
+                </div>                
+                <div>
+                    <small className="text-link"><Link to={"/auth/forgot-password"}>forget password</Link></small>
                 </div>
             </form>
             {/*end::Form*/}
