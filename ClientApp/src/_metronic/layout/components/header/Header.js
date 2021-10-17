@@ -51,7 +51,7 @@ export function Header() {
             <div className="d-flex">
                 <div className="d-none d-lg-flex align-items-center">
                     <Link to="">
-                        <img style={{width:"50px"}} alt="logo" src={layoutProps.headerLogo}/>
+                        <img style={{width:"100px"}} alt="logo" src={layoutProps.headerLogo}/>
                     </Link>
                 </div>
                 <div className="d-none d-lg-block ">
