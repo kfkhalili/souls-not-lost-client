@@ -31,9 +31,6 @@ const ImageModal = ({ person, open, setOpen }) => {
 
   return (
     <Modal size={'lg'} centered={true} show={open} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>{person.name}</Modal.Title>
-      </Modal.Header>
       <Modal.Body className='p-0 '>
         <div className='container-fluid p-0'>
           <div className='row no-gutters'>
@@ -43,6 +40,10 @@ const ImageModal = ({ person, open, setOpen }) => {
             <div className='col-12 col-md-6'>
               <Table>
                 <tbody>
+                <tr>
+                  <td>Name</td>
+                  <td>{person.name}</td>
+                </tr>
                 <tr>
                   <td>Occupation</td>
                   <td>{person.occupation?.join(', ')}</td>
