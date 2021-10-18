@@ -66,7 +66,7 @@ const Image = ({ person }) => {
                 </>
             }
         </figure>
-        { isModalOpen ? <ImageModal image={person} open={isModalOpen} setOpen={setOpenModal}/> : null }
+        { isModalOpen ? <ImageModal person={person} open={isModalOpen} setOpen={setOpenModal}/> : null }
     </>
   )
 }
