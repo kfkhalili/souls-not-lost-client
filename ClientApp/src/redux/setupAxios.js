@@ -1,4 +1,5 @@
 import * as _ from "loadsh"
+import {API} from "../constants";
 
 const logoutClick = async () => {
     // await Axios.post(`${API}/Auth/Logout`)
@@ -19,7 +20,7 @@ export default function setupAxios(axios, store) {
         (config) => {
 
             var data= store.getState();
-            config.baseURL = "https://www.soulsnotlost.com/api/handle"
+            config.baseURL = `${API}api/handle`;
 
             const {
                 auth: { token },

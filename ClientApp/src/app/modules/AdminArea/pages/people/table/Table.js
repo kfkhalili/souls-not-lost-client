@@ -98,7 +98,7 @@ export function Table() {
             sort: true,
             sortCaret: sortCaret,
             formatter: (date) => {
-                return moment(date).format('yyyy-MM-DD HH:mm')
+                return moment(date).format('yyyy-MM-DD')
             },
             headerSortingClasses,
         },
@@ -110,14 +110,14 @@ export function Table() {
             sort: true,
             sortCaret: sortCaret,
             formatter: (date) => {
-                return moment(date).format('yyyy-MM-DD HH:mm')
+                return moment(date).format('yyyy-MM-DD')
             },
             headerSortingClasses,
         },
         {
             dataField: "deathPlace",
             text: intl.formatMessage({
-                id: I18EN["PlaceOfBirth"]
+                id: I18EN.PlaceOfDeath
             }),
             sort: true,
             sortCaret: sortCaret,
@@ -146,6 +146,7 @@ export function Table() {
             sort: true,
             sortCaret: sortCaret,
             headerSortingClasses,
+            formatter: (x) => x.join(", ")
         },
         {
             dataField: "causeOfDeath",
