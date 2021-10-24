@@ -19,7 +19,7 @@ export default function setupAxios(axios, store) {
         (config) => {
 
             var data= store.getState();
-            config.baseURL = "https://localhost:5001/api/handle"
+            config.baseURL = "https://www.soulsnotlost.com/api/handle"
 
             const {
                 auth: { token },
