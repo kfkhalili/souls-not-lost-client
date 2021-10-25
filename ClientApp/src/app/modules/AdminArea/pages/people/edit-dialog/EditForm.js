@@ -73,7 +73,7 @@ export function EditForm({
                             <CancelButton onClick={onHide}/>
                             <SaveButton
                                 id={item?.id}
-                                disabled={!fProps.isValid || fProps.isSubmitting}
+                                disabled={fProps.isSubmitting}
                                 onClick={() => fProps.handleSubmit()}
                             />
                         </Modal.Footer>

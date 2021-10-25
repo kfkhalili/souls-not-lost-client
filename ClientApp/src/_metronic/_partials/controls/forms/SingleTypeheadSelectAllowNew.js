@@ -158,7 +158,7 @@ export function SingleTypeheadSelectAllowNew({
             }
         </>
     return <>
-        {label && <label>{I18Label} {selected}</label>}
+        {label && <label>{I18Label}</label>}
         <div className="position-relative">
             <Typeahead
                 allowNew
