@@ -153,3 +153,7 @@ background-color: #deedff;
     width: 30px;
   }
 }
+
+.table:not(.table-bordered) thead td, .table:not(.table-bordered) thead th{
+  white-space: nowrap;
+}

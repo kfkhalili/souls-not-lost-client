@@ -9,7 +9,11 @@ const ImagesCatalog = () => {
 
     useEffect(() => {
         const getImages = async () => {
-            const response = await axios.get("/api/public/person");
+            const response = await axios.get("/api/public/person",{
+                params:{
+                    "filterBy":"death"
+                }
+            });
             setImages(response?.data?.entities || []);
         };
         getImages();

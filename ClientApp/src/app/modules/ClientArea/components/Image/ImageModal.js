@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {Modal, Table} from 'react-bootstrap';
 import moment from "moment";
-const dateFormatter = (date) => moment(date).format('yyyy-MM-DD');
+const dateFormatter = (date) => moment(date).format('DD.MM.yyyy');
 const getModalStyle = () => {
   const top = 50, left = 50;
 

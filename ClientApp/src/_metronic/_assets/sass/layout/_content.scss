@@ -5,7 +5,7 @@
 // Desktop Mode
 @include media-breakpoint-up(lg) {
 	.content {
-		padding: 70px 0 25px 0;
+		padding: 0 0 25px 0;
 
 		// Fixed Footer Mode
 		.footer-fixed & {
@@ -17,7 +17,7 @@
 // Tablet & Mobile Modes
 @include media-breakpoint-down(md) {
 	.content {
-		padding: 70px 0 25px 0;
+		padding: 0px 0 25px 0;
 
 		// Subheader Enabled & Subheader Transparent Modes
 		.subheader-enabled.subheader-transparent & {

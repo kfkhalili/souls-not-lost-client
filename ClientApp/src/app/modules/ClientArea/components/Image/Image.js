@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     imgDescriptionLayerNoHover: Object.assign(
         {}, imgDescriptionLayer, { visibility:'hidden', opacity:0 }),
     imgDescriptionLayerHover: Object.assign(
-        {}, imgDescriptionLayer, { visibility:'visible', opacity:'1' }),
+        {}, imgDescriptionLayer, { visibility:'visible', opacity:0 }),
 
     imgDescriptionNoHover: Object.assign(
         {}, imgDescription, { transform: 'translateY(1em)' }),
@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
         {}, imgDescription, { transform: 'translateY(0)' }),
 
     imgHover: {filter: 'grayscale(100%)'},
+    img: {filter: 'grayscale(0%)'},
 
     figure: {position:'relative', marginBottom:0},
   }));
@@ -59,7 +60,7 @@ const Image = ({ person }) => {
                 </>
                 :
                 <>
-                {person.image?.length > 0 ? <img className={classes.imgHover} src={person.image[0]} alt={person.name}/> : <img className={classes.imgHover} src={"/images/placeholder.png"} alt={person.name}/> }
+                {person.image?.length > 0 ? <img src={person.image[0]} alt={person.name}/> : <img className={classes.imgHover} src={"/images/placeholder.png"} alt={person.name}/> }
                 <div className={classes.imgDescriptionLayerNoHover}>
                 <h2 className={classes.imgDescriptionNoHover}>{person.name}</h2>
                 </div>

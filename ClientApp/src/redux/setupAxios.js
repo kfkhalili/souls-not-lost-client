@@ -1,20 +1,6 @@
 import * as _ from "loadsh"
 import {API} from "../constants";
 
-const logoutClick = async () => {
-    // await Axios.post(`${API}/Auth/Logout`)
-    const languageKey = 'i18nConfig'
-    const storedLang = localStorage.getItem(languageKey)
-    localStorage.clear();
-    if(storedLang)
-        localStorage.setItem(languageKey,storedLang)
-    const toggle = document.getElementById("kt_quick_user_toggle");
-    if (toggle) {
-        toggle.click();
-    }
-    window.location.href = "/logout";
-};
-
 export default function setupAxios(axios, store) {
     axios.interceptors.request.use(
         (config) => {

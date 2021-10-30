@@ -99,7 +99,7 @@ export function Table() {
             sort: true,
             sortCaret: sortCaret,
             formatter: (createdAt) => {
-             return moment(createdAt).format('yyyy-MM-DD HH:mm')
+             return moment(createdAt).format('DD.MM.yyyy')
             },
             headerSortingClasses,
         },
