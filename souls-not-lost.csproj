@@ -37,6 +37,8 @@
     <_ContentIncludedByDefault Remove="client\src\_metronic\i18n\messages\fr.json" />
     <_ContentIncludedByDefault Remove="client\src\_metronic\i18n\messages\ja.json" />
     <_ContentIncludedByDefault Remove="client\src\_metronic\i18n\messages\zh.json" />
+    <_ContentIncludedByDefault Remove="ClientApp\build\asset-manifest.json" />
+    <_ContentIncludedByDefault Remove="ClientApp\build\manifest.json" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

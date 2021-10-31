@@ -61,7 +61,7 @@ const ImageModal = ({ person, open, setOpen }) => {
                   <td>{dateFormatter(person.death)}</td>
                 </tr>                
                 <tr>
-                  <td>Death place</td>
+                  <td>Place of Death</td>
                   <td>{person.deathPlace?.name}</td>
                 </tr>
                 <tr>

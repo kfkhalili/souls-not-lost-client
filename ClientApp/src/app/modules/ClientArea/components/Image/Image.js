@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     imgDescriptionLayerNoHover: Object.assign(
         {}, imgDescriptionLayer, { visibility:'hidden', opacity:0 }),
     imgDescriptionLayerHover: Object.assign(
-        {}, imgDescriptionLayer, { visibility:'visible', opacity:0 }),
+        {}, imgDescriptionLayer, { visibility:'visible', opacity:'1' }),
 
     imgDescriptionNoHover: Object.assign(
         {}, imgDescription, { transform: 'translateY(1em)' }),
@@ -48,9 +48,7 @@ const Image = ({ person }) => {
         setOpenModal(true);
     };
     return (
-    <>
-        <figure className={classes.figure} onMouseEnter={onHover} onMouseLeave={onLeave} onClick={openModal}>
-            
+        <figure key={person._id} className={classes.figure} onMouseEnter={onHover} onMouseLeave={onLeave} onClick={openModal}>
             { hover ?
                 <>
                 {person.image?.length > 0 ? <img className={classes.imgHover} src={person.image[0]} alt={person.name}/> : <img className={classes.imgHover} src={"/images/placeholder.png"} alt={person.name}/> }
@@ -66,9 +64,8 @@ const Image = ({ person }) => {
                 </div>
                 </>
             }
-        </figure>
         { isModalOpen ? <ImageModal person={person} open={isModalOpen} setOpen={setOpenModal}/> : null }
-    </>
+        </figure>
   )
 }
 
