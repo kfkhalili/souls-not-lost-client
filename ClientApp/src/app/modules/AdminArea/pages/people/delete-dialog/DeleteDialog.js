@@ -1,13 +1,13 @@
-import React, { useEffect, useMemo } from "react";
+import React from "react";
 import {Modal, Spinner} from "react-bootstrap";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useSelector } from "react-redux";
 import {ModalProgressBar} from "../../../../../../_metronic/_partials/controls";
 import * as actions from "../../../_redux/people/actions";
 import {useUIContext} from "../UIContext";
 import {useRefresh} from "../../../hooks/refresh";
 import {useSnackbar} from "notistack";
 import Axios from "axios";
-export const useDeleteClient = ({url, state, callback, isFormData= false, type="post", id}) => {
+export const useDeleteClient = ({url, state, callback, type="post", id}) => {
   const {enqueueSnackbar} = useSnackbar()
   return {
     request: async () => {
