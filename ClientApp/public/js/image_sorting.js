@@ -49,7 +49,10 @@ function sortImagesDom() {
     const images = $(".grid-item  img");
     const imagesContainers = $(".grid-item");
     const gridContainer = $(".gridCentered")[0];
-    if (checkIfAllLoaded()) {
+    const allLoaded = images.map(function () {
+        return this.complete && this.naturalHeight !== 0
+    });
+    if (allLoaded.toArray().filter(x => !x).length > 0) {
         gridContainer.style.height = `${images.length * 200}px`;
         console.log("images not loaded yet");
         return;
@@ -57,12 +60,12 @@ function sortImagesDom() {
     const imagesDims = images.map(function () {
         return {width: this.naturalWidth, height: this.naturalHeight};
     }).get()
-    const newDimensions = sortImages(gridContainer.offsetWidth, imagesDims, Math.floor(gridContainer.offsetWidth / 400));
+    console.log(window.innerWidth / 400)
+    const newDimensions = sortImages(gridContainer.offsetWidth, imagesDims, Math.floor(window.innerWidth / 400));
     if (newDimensions.length > 0) {
         const totalHeight = newDimensions.filter(x => x.column === 0).map(x => x.height).reduce((x, total) => total + x);
         if (isNaN(totalHeight)) {
-            gridContainer.style.height = `${newDimensions.map(x => 200).reduce((x, total) => total + x)}px`;
-            console.log("bad request");
+            gridContainer.style.height = `${newDimensions.filter(x => x.column === 0).map(x => 500).reduce((x, total) => total + x)}px`;
             return;
         } else {
             gridContainer.style.height = `${totalHeight}px`;
@@ -80,3 +83,5 @@ function sortImagesDom() {
 }
 
 window.sortImagesDom = sortImagesDom
+window.onresize = sortImagesDom;
+

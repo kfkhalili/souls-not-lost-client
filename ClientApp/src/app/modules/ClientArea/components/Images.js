@@ -5,6 +5,7 @@ import {useState, useEffect} from "react";
 import axios from 'axios'
 import {LazyLoading} from "./LazyLoading";
 import {isArray} from "lodash";
+import {Spinner} from "react-bootstrap";
 
 const pageSize = 5;
 
@@ -33,7 +34,6 @@ const ImagesCatalog = () => {
     }
 
     useEffect(() => {
-        window.onresize = window.sortImagesDom;
         const getImages = async () => {
             await loadMore()
         };
@@ -56,9 +56,11 @@ const ImagesCatalog = () => {
                         <div className="position-relative;">
                             {
                                 persons.map((person, index) => (
-                                    <div key={person.name} style={{zIndex: 1000 - index}} className="grid-item position-absolute transform-animate">
+                                    <div key={person._id} style={{zIndex: 1000 - index}}
+                                         className="grid-item position-absolute transform-animate">
                                         <div className="h-100">
-                                            <Image isLoading={isLoading} person={person} setLoading={(result) => setIsLoading(result)} />
+                                            <Image isLoading={isLoading} person={person}
+                                                   setLoading={(result) => setIsLoading(result)}/>
                                         </div>
                                     </div>
                                 ))
@@ -67,7 +69,7 @@ const ImagesCatalog = () => {
                     </div>
                 </div>
             </div>
-            {!isLoading && <LazyLoading callback={loadMore}/>}
+            {!isLoading ? <LazyLoading callback={loadMore}/> : <div className={"text-center"}><Spinner size={"lg"} animation={"border"}/></div>}
         </>
     );
 };
