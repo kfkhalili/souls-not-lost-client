@@ -16,5 +16,5 @@ export const LazyLoading = ({callback}) => {
         }
     }, [isVisible])
 
-    return (<div ref={setElement} className="w-100 h-50px bg-white"> {!isVisible && <span>loading</span>} </div>)
+    return (<div ref={setElement}> {!isVisible && <span>loading</span>} </div>)
 };

@@ -33,9 +33,9 @@ const ImagesCatalog = () => {
     }
 
     useEffect(() => {
+        window.onresize = window.sortImagesDom;
         const getImages = async () => {
             await loadMore()
-            window.onresize = window.sortImagesDom;
         };
         getImages();
     }, []);

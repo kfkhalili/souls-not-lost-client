@@ -49,10 +49,7 @@ function sortImagesDom() {
     const images = $(".grid-item  img");
     const imagesContainers = $(".grid-item");
     const gridContainer = $(".gridCentered")[0];
-    const allLoaded = images.map(function () {
-        return this.complete && this.naturalHeight !== 0
-    });
-    if (allLoaded.toArray().filter(x => !x).length > 0) {
+    if (checkIfAllLoaded()) {
         gridContainer.style.height = `${images.length * 200}px`;
         console.log("images not loaded yet");
         return;
