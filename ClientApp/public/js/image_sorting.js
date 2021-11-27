@@ -35,6 +35,16 @@ function sortImages(containerWidth, imagesDims, columnsCount) {
     return newImagesPos;
 }
 
+function checkIfAllLoaded() {
+    const images = $(".grid-item  img");
+    const allLoaded = images.map(function () {
+        return this.complete && this.naturalHeight !== 0
+    });
+    return allLoaded.toArray().filter(x => !x).length === 0;
+}
+
+window.checkIfAllLoaded = checkIfAllLoaded;
+
 function sortImagesDom() {
     const images = $(".grid-item  img");
     const imagesContainers = $(".grid-item");
@@ -50,14 +60,14 @@ function sortImagesDom() {
     const imagesDims = images.map(function () {
         return {width: this.naturalWidth, height: this.naturalHeight};
     }).get()
-    const newDimensions = sortImages(gridContainer.offsetWidth, imagesDims, 3);
+    const newDimensions = sortImages(gridContainer.offsetWidth, imagesDims, Math.floor(gridContainer.offsetWidth / 400));
     if (newDimensions.length > 0) {
-        const totalHeight = newDimensions.map(x => x.height).reduce((x, total) => total + x);
+        const totalHeight = newDimensions.filter(x => x.column === 0).map(x => x.height).reduce((x, total) => total + x);
         if (isNaN(totalHeight)) {
             gridContainer.style.height = `${newDimensions.map(x => 200).reduce((x, total) => total + x)}px`;
             console.log("bad request");
             return;
-        }else{
+        } else {
             gridContainer.style.height = `${totalHeight}px`;
         }
     }

@@ -44,6 +44,7 @@ export function Header() {
       <div
         className={`header ${layoutProps.headerClasses}`}
         id="kt_header"
+        style={{zIndex:10000}}
         {...layoutProps.headerAttributes}
       >
         <div className={` ${layoutProps.headerContainerClasses} d-flex align-items-stretch justify-content-between `}>

@@ -12,7 +12,7 @@ const ImagesCatalog = () => {
     const [pages, setPages] = useState([]);
     const [pageNumber, setPageNumber] = useState(0);
     const [total, setTotal] = useState(undefined);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const loadMore = async () => {
         if (total === undefined || total > pageNumber * pageSize) {
@@ -29,7 +29,6 @@ const ImagesCatalog = () => {
                 setTotal(response?.data?.totalCount || 0);
             }
             setPageNumber(pageNumber + 1);
-            setIsLoading(false);
         }
     }
 
@@ -56,10 +55,10 @@ const ImagesCatalog = () => {
                     <div className="w-100">
                         <div className="position-relative;">
                             {
-                                persons.map((person) => (
-                                    <div key={person.name} className="grid-item position-absolute transform-animate">
+                                persons.map((person, index) => (
+                                    <div key={person.name} style={{zIndex: 1000 - index}} className="grid-item position-absolute transform-animate">
                                         <div className="h-100">
-                                            <Image person={person} />
+                                            <Image isLoading={isLoading} person={person} setLoading={(result) => setIsLoading(result)} />
                                         </div>
                                     </div>
                                 ))
@@ -68,7 +67,7 @@ const ImagesCatalog = () => {
                     </div>
                 </div>
             </div>
-            <LazyLoading callback={loadMore}/>
+            {!isLoading && <LazyLoading callback={loadMore}/>}
         </>
     );
 };
